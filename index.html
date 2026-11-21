@@ -1,1 +1,1459 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imdiva — Онлайн магазин | Алматы</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-white: #ffffff;
+            --text-dark: #1c2434;
+            --brand-blue: #1e3d59;
+            --text-muted: #5a6270;
+            --accent-red: #b8293d;
+            --line-gold: #d5cfc7;
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Экран 1: Главная визитка */
+        #welcomeScreen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 20px;
+        }
+
+        .welcome-container {
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 0.7s ease-out;
+        }
+
+        .logo-wrapper {
+            width: 100%;
+            max-width: 310px;
+            margin-bottom: 12px;
+        }
+
+        .logo-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .divider {
+            width: 85%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--line-gold), transparent);
+            margin: 8px 0 24px;
+        }
+
+        .info-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 36px;
+        }
+
+        .city {
+            font-size: 19px;
+            font-weight: 500;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .shop-title {
+            font-size: 31px;
+            font-weight: 500;
+            color: var(--text-dark);
+            line-height: 1.15;
+            margin: 2px 0 6px;
+            text-shadow: 
+                0 2px 6px rgba(30, 61, 89, 0.32),
+                0 0 12px rgba(30, 61, 89, 0.16);
+        }
+
+        .phone-link {
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--text-dark);
+            text-decoration: none;
+            letter-spacing: 0.6px;
+            padding: 3px 10px;
+            border-radius: 6px;
+            transition: color 0.2s ease;
+        }
+
+        .phone-link:hover {
+            color: var(--accent-red);
+        }
+
+        .insta-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            margin-top: 4px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 20px;
+            font-weight: 500;
+            padding: 4px 12px;
+            transition: opacity 0.2s ease;
+        }
+
+        .insta-link:hover {
+            opacity: 0.75;
+        }
+
+        .insta-icon {
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .catalog-btn {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 275px;
+            padding: 13px 24px 15px;
+            background-color: #ffffff;
+            color: var(--text-dark);
+            border: 1.5px solid var(--brand-blue);
+            border-radius: 12px;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(30, 61, 89, 0.08);
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        .catalog-btn:hover {
+            background-color: var(--brand-blue);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(30, 61, 89, 0.2);
+        }
+
+        .btn-top-text {
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 0.6px;
+            opacity: 0.85;
+            margin-bottom: 1px;
+        }
+
+        .btn-main-text {
+            font-size: 26px;
+            font-weight: 500;
+            line-height: 1.15;
+            letter-spacing: 0.3px;
+        }
+
+        /* Экран 2: Каталог */
+        #catalogScreen {
+            display: none;
+            padding-bottom: 90px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 18px 16px 32px;
+        }
+
+        .header-banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0 14px;
+            position: relative;
+        }
+
+        .back-home {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--brand-blue);
+            background: #ffffff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .back-home:hover {
+            color: #ffffff;
+            background-color: var(--brand-blue);
+        }
+
+        .header-logo {
+            max-width: 180px;
+            width: 50%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            margin: 0 auto;
+        }
+
+        /* Лента категорий */
+        .categories-nav {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background-color: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(6px);
+            padding: 10px 0 14px;
+            margin: 0 -16px 16px;
+            padding-left: 16px;
+            padding-right: 16px;
+            border-bottom: 1px solid #f0ece6;
+        }
+
+        .categories-scroll {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding-bottom: 2px;
+        }
+
+        .categories-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cat-btn {
+            flex: 0 0 auto;
+            background-color: #ffffff;
+            color: var(--text-dark);
+            border: 1px solid var(--brand-blue);
+            border-radius: 10px;
+            padding: 8px 15px;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 17px;
+            font-weight: 600;
+            line-height: 1.2;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.22s ease;
+            text-align: center;
+        }
+
+        .cat-btn span.sub-ru {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 400;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .cat-btn.active {
+            background-color: #ffffff;
+            border: 1.2px solid var(--brand-blue);
+            color: var(--text-dark);
+            box-shadow: 0 0 12px rgba(30, 61, 89, 0.35), 0 2px 6px rgba(30, 61, 89, 0.1);
+        }
+
+        .cat-btn.active span.sub-ru {
+            color: var(--accent-red);
+            font-weight: 500;
+        }
+
+        .section-heading {
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .section-heading h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-dark);
+            line-height: 1.2;
+        }
+
+        .section-heading p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* КАСТОМНЫЙ ВИДЕО-БЛОК С УДОБНЫМИ КНОПКАМИ */
+        .category-header-video-box {
+            width: 100%;
+            max-width: 220px;
+            aspect-ratio: 9 / 13;
+            margin: 0 auto 18px;
+            background-color: #000000;
+            border: 1.5px solid var(--brand-blue);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 14px rgba(30, 61, 89, 0.1);
+            position: relative;
+        }
+
+        .category-header-video-box iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            pointer-events: none; /* Чтобы клики шли по нашему контейнеру */
+        }
+
+        /* Панель управления поверх видео */
+        .video-overlay-controls {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.4) 100%);
+            z-index: 10;
+        }
+
+        .video-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .video-ctrl-btn {
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+        .video-ctrl-btn:hover {
+            background: rgba(0, 0, 0, 0.85);
+        }
+
+        .video-center-play {
+            align-self: center;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            border: 1.5px solid rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .video-center-play:hover {
+            transform: scale(1.08);
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .general-info-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .brand-story-card {
+            background-color: #ffffff;
+            border: 1px solid var(--brand-blue);
+            border-radius: 14px;
+            padding: 22px 20px;
+            text-align: center;
+        }
+
+        .brand-story-card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .brand-story-card p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            line-height: 1.65;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .info-highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .highlight-item {
+            background: #faf9f7;
+            border-radius: 10px;
+            padding: 12px 10px;
+            border: 1px solid #eeeae3;
+        }
+
+        .highlight-item strong {
+            display: block;
+            font-size: 18px;
+            color: var(--text-dark);
+            margin-bottom: 2px;
+        }
+
+        .highlight-item span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .white-action-btn {
+            flex: 1;
+            background-color: #ffffff;
+            color: var(--text-dark);
+            border: 1px solid var(--brand-blue);
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .white-action-btn:hover {
+            background-color: var(--brand-blue);
+            color: #ffffff;
+        }
+
+        /* Сетка товаров */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .product-card {
+            background-color: #ffffff;
+            border: 1px solid var(--brand-blue);
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .product-card.out-of-stock {
+            opacity: 0.45;
+            filter: grayscale(35%);
+        }
+
+        .product-image-wrap {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            background-color: #f4f2ee;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .product-image-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .product-image-wrap:hover img {
+            transform: scale(1.03);
+        }
+
+        .sold-out-badge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.95);
+            color: var(--accent-red);
+            border: 1px solid var(--accent-red);
+            padding: 7px 12px;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            z-index: 5;
+        }
+
+        .product-info {
+            padding: 12px 12px 14px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            justify-content: space-between;
+            text-align: center;
+        }
+
+        .product-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 2px;
+        }
+
+        .product-price {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .card-cart-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f7f6f4;
+            border: 1px solid var(--brand-blue);
+            border-radius: 8px;
+            padding: 4px 8px;
+        }
+
+        .card-qty-btn {
+            background: #ffffff;
+            border: 1px solid var(--brand-blue);
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--brand-blue);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-qty-btn:hover {
+            background: var(--brand-blue);
+            color: #fff;
+        }
+
+        .card-qty-count {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .add-to-cart-simple {
+            width: 100%;
+            background-color: #ffffff;
+            color: var(--text-dark);
+            border: 1px solid var(--brand-blue);
+            border-radius: 8px;
+            padding: 8px;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .add-to-cart-simple:hover {
+            background-color: var(--brand-blue);
+            color: #ffffff;
+        }
+
+        .btn-main {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.1;
+        }
+
+        .btn-sub {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9px;
+            color: var(--text-muted);
+            margin-top: 1px;
+        }
+
+        /* НИЖНЯЯ ФИКСИРОВАННАЯ ПАНЕЛЬ КОРЗИНЫ */
+        .bottom-cart-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border-top: 1.5px solid var(--brand-blue);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 90;
+            box-shadow: 0 -4px 20px rgba(30, 61, 89, 0.12);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .bottom-cart-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bottom-cart-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .bottom-cart-total {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .bottom-cart-btn {
+            background-color: var(--brand-blue);
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(30, 61, 89, 0.2);
+        }
+
+        /* МОДАЛЬНОЕ ОКНО (УВЕЛИЧЕНИЕ ВИДЕО ИЛИ ФОТО НА ВЕСЬ ЭКРАН) */
+        .image-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.88);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .image-modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+            aspect-ratio: 9 / 16;
+            background: #000;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.7);
+        }
+
+        .image-modal-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-modal-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .close-img-modal {
+            position: absolute;
+            top: -45px;
+            right: 0;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 36px;
+            cursor: pointer;
+            z-index: 210;
+        }
+
+        /* Модальное окно корзины */
+        .cart-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            z-index: 150;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .cart-modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .cart-modal {
+            background: #ffffff;
+            width: 100%;
+            max-width: 500px;
+            max-height: 85vh;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            padding: 24px 20px 30px;
+            display: flex;
+            flex-direction: column;
+            transform: translateY(100%);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cart-modal-overlay.open .cart-modal {
+            transform: translateY(0);
+        }
+
+        .cart-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 12px;
+        }
+
+        .cart-header h3 {
+            font-size: 24px;
+            color: var(--text-dark);
+        }
+
+        .close-cart-btn {
+            background: none;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .cart-items-list {
+            overflow-y: auto;
+            max-height: 45vh;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-right: 4px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #faf9f7;
+            padding: 10px;
+            border-radius: 12px;
+            border: 1px solid #e8e3dc;
+        }
+
+        .cart-item-img {
+            width: 55px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 8px;
+            background: #eee;
+            cursor: pointer;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .cart-item-price {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .qty-btn {
+            background: #fff;
+            border: 1px solid var(--brand-blue);
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--brand-blue);
+        }
+
+        .remove-item-btn {
+            background: none;
+            border: none;
+            color: var(--accent-red);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        .cart-footer {
+            border-top: 1px solid #eee;
+            padding-top: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .whatsapp-checkout-btn {
+            background-color: #25d366;
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            padding: 14px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+
+        .empty-cart-msg, .empty-category {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-muted);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ЭКРАН 1 -->
+    <main id="welcomeScreen">
+        <div class="welcome-container">
+            <div class="logo-wrapper">
+                <img src="37918-removebg-preview.png" alt="Imdiva">
+            </div>
+            <div class="divider"></div>
+            <div class="info-block">
+                <span class="city">Алматы</span>
+                <h1 class="shop-title">Онлайн магазин</h1>
+                <a href="tel:+77077787661" class="phone-link">8 707 778 76 61</a>
+                <a href="https://www.instagram.com/d_iva_brand" target="_blank" rel="noopener noreferrer" class="insta-link">
+                    <img src="Untitled6_20261121143625.png" alt="Instagram" class="insta-icon">
+                    <span>d_iva_brand</span>
+                </a>
+            </div>
+            <button class="catalog-btn" id="goToCatalogBtn">
+                <span class="btn-top-text">Каталог</span>
+                <span class="btn-main-text">Тапсырыс беру</span>
+            </button>
+        </div>
+    </main>
+
+    <!-- ЭКРАН 2: КАТАЛОГ -->
+    <div id="catalogScreen">
+        <div class="container">
+            <header class="header-banner">
+                <button class="back-home" id="goBackHomeBtn">← Басты бет</button>
+                <img src="37918-removebg-preview.png" alt="Imdiva" class="header-logo">
+                <div style="width: 70px;"></div>
+            </header>
+
+            <nav class="categories-nav" aria-label="Категории">
+                <div class="categories-scroll" id="categoryTabs">
+                    <button class="cat-btn active" data-cat="general">
+                        Жалпы ақпарат
+                        <span class="sub-ru">Общая информация</span>
+                    </button>
+                    <button class="cat-btn" data-cat="short_scarves">
+                        Қысқа шарфтар
+                        <span class="sub-ru">Авторские короткие шарфики</span>
+                    </button>
+                    <button class="cat-btn" data-cat="long_scarves">
+                        Ұзын шарфтар
+                        <span class="sub-ru">Авторские длинные шарфы</span>
+                    </button>
+                    <button class="cat-btn" data-cat="pearl_magnet">
+                        Інжу магнитпен шарфтар
+                        <span class="sub-ru">Шарфики на магните Жемчужина</span>
+                    </button>
+                    <button class="cat-btn" data-cat="french_scarves">
+                        Француздық мойын орамалдар
+                        <span class="sub-ru">Французские косынки</span>
+                    </button>
+                    <button class="cat-btn" data-cat="collars">
+                        Жағашықтар
+                        <span class="sub-ru">Воротнички</span>
+                    </button>
+                    <button class="cat-btn" data-cat="abayas">
+                        Абайкалар
+                        <span class="sub-ru">Абайки</span>
+                    </button>
+                    <button class="cat-btn" data-cat="shoppers">
+                        Шопер, жағажай сөмкелер
+                        <span class="sub-ru">Шоперы, пляжные сумки</span>
+                    </button>
+                    <button class="cat-btn" data-cat="sypyra">
+                        Жайма, 7 нан сыпыра
+                        <span class="sub-ru">Сыпыра для жайма и шелпеков</span>
+                    </button>
+                    <button class="cat-btn" data-cat="hair_ties">
+                        Шаш резинкалар
+                        <span class="sub-ru">Резинки для волос</span>
+                    </button>
+                </div>
+            </nav>
+
+            <div class="section-heading" id="sectionHeading">
+                <h2>Жалпы ақпарат / Общая информация</h2>
+                <p>Imdiva — сшито с любовью • Алматы</p>
+            </div>
+
+            <main id="catalogContent"></main>
+        </div>
+    </div>
+
+    <!-- КОРЗИНА -->
+    <div class="bottom-cart-bar" id="bottomCartBar" style="display: none;">
+        <div class="bottom-cart-info">
+            <span class="bottom-cart-title">Себет / Корзина (<span id="cartCountBadge">0</span>)</span>
+            <span class="bottom-cart-total" id="bottomCartTotal">0 тг</span>
+        </div>
+        <button class="bottom-cart-btn" id="openCartModalBtn">
+            🛒 Қарау / Открыть корзину
+        </button>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО (УВЕЛИЧЕНИЕ ФОТО ИЛИ ВИДЕО НА ВЕСЬ ЭКРАН) -->
+    <div class="image-modal-overlay" id="imageModal">
+        <div class="image-modal-content" id="modalContainer">
+            <button class="close-img-modal" id="closeImgModal">&times;</button>
+            <!-- Сюда динамически подставится картинка товара или увеличенное видео -->
+        </div>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО КОРЗИНЫ -->
+    <div class="cart-modal-overlay" id="cartModal">
+        <div class="cart-modal">
+            <div class="cart-header">
+                <h3>Себет / Корзина</h3>
+                <button class="close-cart-btn" id="closeCartBtn">&times;</button>
+            </div>
+            <div class="cart-items-list" id="cartItemsList"></div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Барлығы / Итого:</span>
+                    <span id="cartTotalPrice">0 тг</span>
+                </div>
+                <button class="whatsapp-checkout-btn" id="whatsappCheckoutBtn">
+                    WhatsApp арқылы тапсырыс беру / Заказать в WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const WHATSAPP_PHONE = "77077787661";
+        let cart = {};
+        let isMuted = true;
+        let isPlaying = true;
+
+        const welcomeScreen = document.getElementById("welcomeScreen");
+        const catalogScreen = document.getElementById("catalogScreen");
+        const goToCatalogBtn = document.getElementById("goToCatalogBtn");
+        const goBackHomeBtn = document.getElementById("goBackHomeBtn");
+        const bottomCartBar = document.getElementById("bottomCartBar");
+        const cartCountBadge = document.getElementById("cartCountBadge");
+        const bottomCartTotal = document.getElementById("bottomCartTotal");
+        const openCartModalBtn = document.getElementById("openCartModalBtn");
+        
+        const cartModal = document.getElementById("cartModal");
+        const closeCartBtn = document.getElementById("closeCartBtn");
+        const cartItemsList = document.getElementById("cartItemsList");
+        const cartTotalPrice = document.getElementById("cartTotalPrice");
+        const whatsappCheckoutBtn = document.getElementById("whatsappCheckoutBtn");
+
+        const imageModal = document.getElementById("imageModal");
+        const modalContainer = document.getElementById("modalContainer");
+        const closeImgModal = document.getElementById("closeImgModal");
+
+        // Функция открытия фото товара на весь экран
+        function openZoom(imgUrl) {
+            modalContainer.innerHTML = `
+                <button class="close-img-modal" onclick="closeModal()">&times;</button>
+                <img src="${imgUrl}" alt="Товар вблизи">
+            `;
+            imageModal.classList.add("open");
+        }
+
+        // Функция открытия видео на полный экран (как товар)
+        function openVideoFullscreen(catKey) {
+            const videoId = categoryVideoIds[catKey];
+            if (!videoId) return;
+            modalContainer.innerHTML = `
+                <button class="close-img-modal" onclick="closeModal()">&times;</button>
+                <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            `;
+            imageModal.classList.add("open");
+        }
+
+        function closeModal() {
+            imageModal.classList.remove("open");
+            modalContainer.innerHTML = '<button class="close-img-modal" id="closeImgModal">&times;</button>';
+        }
+
+        closeImgModal.addEventListener("click", closeModal);
+        imageModal.addEventListener("click", (e) => {
+            if (e.target === imageModal) closeModal();
+        });
+
+        goToCatalogBtn.addEventListener("click", () => {
+            welcomeScreen.style.display = "none";
+            catalogScreen.style.display = "block";
+            window.scrollTo(0, 0);
+        });
+
+        goBackHomeBtn.addEventListener("click", () => {
+            catalogScreen.style.display = "none";
+            welcomeScreen.style.display = "flex";
+            window.scrollTo(0, 0);
+        });
+
+        /* ID видео для каждой категории */
+        const categoryVideoIds = {
+            general: "",
+            short_scarves: "4X8B-tjaymM", // Ваше видео коротких шарфов
+            long_scarves: "",
+            pearl_magnet: "",
+            french_scarves: "",
+            collars: "",
+            abayas: "",
+            shoppers: "",
+            sypyra: "",
+            hair_ties: ""
+        };
+
+        const shortScarvesData = [
+            { id: "1K2hgD2rMvJKZESs3xbzHIBBfXeKTs9lN", price: 5000, name: "К2", inStock: true },
+            { id: "1Qy6IQivikxxic2JQB7pdbuElZBzpZ8Dv", price: 5000, name: "К3", inStock: true },
+            { id: "1phAEAG-tXRq1_4mhvwgUevJj09fTIH5a", price: 5000, name: "К4", inStock: true },
+            { id: "1_07ICnLmdoa2u4jHE76KlU4Z-Ox3BSDh", price: 5000, name: "К5", inStock: true },
+            { id: "1Bw7ilYDnt2QNOPQnzwiz1g3FHw-YIlgY", price: 5000, name: "К6", inStock: true },
+            { id: "1sT1vNQj2OA0NxqfaQDYBYTGUQArUjH4p", price: 4500, name: "К7", inStock: true },
+            { id: "1CtFnG12_zl5HK9tWfPd079A2UFGU5dBB", price: 4500, name: "К8", inStock: true },
+            { id: "1sAE7r86d3KIuCkvP2PzLnf8NhQ20fLLo", price: 4500, name: "К9", inStock: true },
+            { id: "1jQtX0207d4tcFVy4-S4wf9S4P_rinAXb", price: 4500, name: "К10", inStock: true },
+            { id: "1uKVoukHr5bfUxXkLUaHXFQWjYF49glm7", price: 4500, name: "К11", inStock: true },
+            { id: "1wwhHy-732ubyeebdrzp_gS4eY8QEieIw", price: 4500, name: "К12", inStock: true },
+            { id: "1SdCIuY3rjOUxKXgKoUwHQU_6bgCAQt8I", price: 4500, name: "К13", inStock: true },
+            { id: "1_3MC6HDHxv3eA0T8BwiT2J4r84mFPqEC", price: 4500, name: "К14", inStock: true },
+            { id: "1ZeGuUrqtGQQaZuPaYx6Z-9jMkrxhMLe-", price: 4500, name: "К15", inStock: true },
+            { id: "1q2kv-N-mJrRcVNrgVpUHZ7cTvgnpUyxB", price: 4500, name: "К16", inStock: true },
+            { id: "1O5ZoQcoh0QqQAD8oZanQ9pBIGBHroDWp", price: 4500, name: "К17", inStock: true },
+            { id: "1LIIP0_i5JWIYhoCSVBU3bYE3J0HLcuDJ", price: 4500, name: "К18", inStock: true },
+            { id: "1vQtP5L7SEvlti0qeFzQMCk96-JeP_YGy", price: 4500, name: "К19", inStock: true },
+            { id: "1aVYVPj70Gsxu_LqgxvZ-XyqBlY3ZimfQ", price: 4500, name: "К20", inStock: true },
+            { id: "1H86J7H6XJSCd5uNBWAhuy3ru2_z8URFH", price: 4500, name: "К21", inStock: false },
+            { id: "1n-9-l_Mtt06bWZC5fPRHLqMZw563F0-y", price: 4500, name: "К22", inStock: true },
+            { id: "1PRco7nTrcDFBRzumrB_h_mAEL-O0LH7e", price: 4500, name: "К23", inStock: true },
+            { id: "1UKMhADuJz2pE2PUQb9A7cjNeJJo-uBRn", price: 4500, name: "К24", inStock: true },
+            { id: "1SpqVnsL3elAjsSXyPbqa4a6QVSkGzuhQ", price: 4500, name: "К25", inStock: true },
+            { id: "11NxcQrZR-jIdqbNM1S8QwLwjZz7ckaUn", price: 4500, name: "К26", inStock: true },
+            { id: "1AWEiVadb6AhlLh8L_xE81wsGbgiG7PT0", price: 4500, name: "К27", inStock: true },
+            { id: "1ouKxu2sFCB7TJjMHc7kBHFB4Sj1W_VLP", price: 4500, name: "К28", inStock: true },
+            { id: "1uGsmdBENOlnnv9Cp5UYhh0zx_pMRyrnu", price: 4500, name: "К29", inStock: true },
+            { id: "1U4JJGVc6imqCGh6Yr1ffmJNO3L-UD9YF", price: 4500, name: "К30", inStock: true },
+            { id: "1a9Kxz0Ob2HahUa-P9UZvzh272tmKbgO-", price: 4500, name: "К31", inStock: true },
+            { id: "1qEK9qMAnLBvksKJxlS-Nk1qsUTIBUqPM", price: 4500, name: "К32", inStock: true },
+            { id: "1oDcb52OrL0eRCobcZkdty8AgGwnGU3mm", price: 4500, name: "К33", inStock: false },
+            { id: "1Dcc_SG-U4ZUBw7db1BVNR6RH8ba-31BU", price: 4500, name: "К34", inStock: true },
+            { id: "1dFDY_DbDv7xCVjKj-cZ6rSzTmfohBCVM", price: 4500, name: "К35", inStock: true },
+            { id: "1k6DV58DrwaN-5Kte6HnDSHhDf2azKdfd", price: 4500, name: "К36", inStock: true },
+            { id: "1t9TvWz57cS78385q_nt3jE-bz9jQVvVd", price: 4500, name: "К37", inStock: true },
+            { id: "1z50r3leJ8Dkrz5d6ExHLKU8BSeds20jQ", price: 4500, name: "К38", inStock: true },
+            { id: "1NlaHBWHvE78RESLZP5BdmOygj8cKWSU7", price: 4500, name: "К39", inStock: true },
+            { id: "13WZ2rzGQ8e0OShIhEsP7WFpH9b8iioVq", price: 4500, name: "К40", inStock: true },
+            { id: "1x-HUq1ZGlKLKkCX0uh7frBZaZ9BiQP99", price: 4500, name: "К41", inStock: true },
+            { id: "1k2BesLYaRv81SO0H1Q8Tw7Hru5Hzv1QE", price: 4500, name: "К42", inStock: true },
+            { id: "179SPnppzmX0z0zQzwcwy_-Qd8Vn7nBed", price: 4500, name: "К43", inStock: true },
+            { id: "1GR-CzxMPSImjP4Ig2PoqHLuDRTes0TGb", price: 4500, name: "К44", inStock: true },
+            { id: "1sspLp-uqN-W7SlmKMcGJqRYqO_iZd75B", price: 4500, name: "К45", inStock: true },
+            { id: "1faYaJ6sSNFhfh3I4_HudKZDbS2i8oPD8", price: 4500, name: "К46", inStock: true },
+            { id: "1dSqjEpONjOgz1SJkGFd6cM3H6abI80nI", price: 4500, name: "К47", inStock: true },
+            { id: "1rrJBarVWZcVAfe-Nz8qItPthQ_5VyV2Q", price: 4500, name: "К48", inStock: true },
+            { id: "1Li0Bdvl0Nf3UZ49BVSg0_UIjaE53JnpL", price: 4500, name: "К49", inStock: true },
+            { id: "1BaIX6mYJb1z4jL2QZ7KVvpEvZMyjXIjK", price: 4500, name: "К50", inStock: true },
+            { id: "1XGGNRtGxi3xn9q1gn-wNcOG988CXPIAl", price: 4500, name: "К51", inStock: true },
+            { id: "1rPxyrFCw_6ZvksYGP8hKPRereNXXzOTo", price: 4500, name: "К52", inStock: true },
+            { id: "1_99_uOPWI43aU_3PvyLzHxTVVaOn5is8", price: 4500, name: "К53", inStock: true },
+            { id: "1o1HMSfk8X2zz71Zum0UCCynqUiu6z5T7", price: 4500, name: "К54", inStock: true },
+            { id: "1AmfnPMXVRUjpFPOKMeHoms1vefUbu0nf", price: 4500, name: "К55", inStock: true },
+            { id: "1IrG12zboCMmfFM1pQIOP_koPuz1S-Sxa", price: 4500, name: "К56", inStock: true },
+            { id: "1GiE-s8VCFsXXads_mD6vCfZDhoox5ZrK", price: 4500, name: "К57", inStock: true },
+            { id: "1F2df6WU7pm7-_pEqwOA_IL52TWdx0y3D", price: 4500, name: "К58", inStock: true },
+            { id: "1lGqWlNp2yrWDplVsusPl70GTB936naNt", price: 4500, name: "К59", inStock: true },
+            { id: "1xaC7CX-pm9OOO10BWIrtjGaA31DVxYVK", price: 4500, name: "К60", inStock: true },
+            { id: "1FrGX9t1QIAx7OimqGqYHEvoiG-5ePJa7", price: 4500, name: "К61", inStock: true },
+            { id: "1aBtzbp57RHOX5fUiSvjOSFXgntKwhW6X", price: 4500, name: "К62", inStock: true },
+            { id: "1u5pIqjUC6UXxErrJRk5RnP_6zH8h0E_a", price: 4500, name: "К63", inStock: true },
+            { id: "1WlFTV_xvFgJDGbTlNm6GjljK7D7tWHO0", price: 4500, name: "К64", inStock: true },
+            { id: "1SeoKbS1em1vcyf6mcJcmgXPMI9ysCOJ3", price: 400, name: "К65", inStock: true },
+            { id: "1kdWmxe-zD_lwGLwiWFu2XzAwLL0zhlb7", price: 600, name: "К66", inStock: true }
+        ];
+
+        const categoryTitles = {
+            general: { kz: "Жалпы ақпарат / Общая информация", ru: "Imdiva — сшито с любовью • Алматы" },
+            short_scarves: { kz: "Авторлық ұлттық алқасымен қысқа шарфтар", ru: "Авторские короткие шарфики с подвесками в национальном стиле" },
+            long_scarves: { kz: "Авторлық ұлттық алқасымен ұзын шарфтар", ru: "Авторские длинные шарфы с подвесками в национальном стиле" },
+            pearl_magnet: { kz: "Інжу магнитпен қысқа шарфтар", ru: "Шарфики на магните «Жемчужина»" },
+            french_scarves: { kz: "Француздық мойын орамалдар", ru: "Французские косынки" },
+            collars: { kz: "Жағашықтар", ru: "Воротнички" },
+            abayas: { kz: "Абайкалар", ru: "Абайки" },
+            shoppers: { kz: "Шопер, жағажай сөмкелер", ru: "Шоперы, пляжные сумки" },
+            sypyra: { kz: "Жайма, 7 нан сыпыра", ru: "Сыпыра для жайма и шелпеков" },
+            hair_ties: { kz: "Шаш резинкалар", ru: "Резинки для волос" }
+        };
+
+        const contentEl = document.getElementById("catalogContent");
+        const headingEl = document.getElementById("sectionHeading");
+
+        function changeItemQty(name, delta, itemObj = null) {
+            if (!cart[name]) {
+                if (delta > 0 && itemObj) {
+                    cart[name] = { ...itemObj, quantity: 1 };
+                }
+            } else {
+                cart[name].quantity += delta;
+                if (cart[name].quantity <= 0) delete cart[name];
+            }
+            updateGlobalCartUI();
+            const activeBtn = document.querySelector(".cat-btn.active");
+            if (activeBtn) switchCategory(activeBtn.dataset.cat, false);
+        }
+
+        function updateGlobalCartUI() {
+            let totalCount = 0, totalSum = 0;
+            for (let key in cart) {
+                totalCount += cart[key].quantity;
+                totalSum += cart[key].price * cart[key].quantity;
+            }
+            if (totalCount > 0) {
+                bottomCartBar.style.display = "flex";
+                cartCountBadge.textContent = totalCount;
+                bottomCartTotal.textContent = totalSum.toLocaleString() + " тг";
+            } else {
+                bottomCartBar.style.display = "none";
+            }
+            renderCartModalItems();
+        }
+
+        function renderCartModalItems() {
+            const keys = Object.keys(cart);
+            if (keys.length === 0) {
+                cartItemsList.innerHTML = `<div class="empty-cart-msg">Себет бос / Корзина пуста</div>`;
+                cartTotalPrice.textContent = "0 тг";
+                return;
+            }
+            let totalSum = 0;
+            cartItemsList.innerHTML = keys.map(name => {
+                const item = cart[name];
+                const itemSum = item.price * item.quantity;
+                totalSum += itemSum;
+                const imgUrl = `https://lh3.googleusercontent.com/d/${item.id}=w400`;
+                return `
+                    <div class="cart-item">
+                        <img src="${imgUrl}" alt="${item.name}" class="cart-item-img" onclick="openZoom('${imgUrl}')">
+                        <div class="cart-item-info">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-price">${item.price.toLocaleString()} тг</div>
+                            <div class="cart-item-controls">
+                                <button class="qty-btn" onclick="changeItemQty('${item.name}', -1)">-</button>
+                                <span>${item.quantity}</span>
+                                <button class="qty-btn" onclick="changeItemQty('${item.name}', 1)">+</button>
+                                <button class="remove-item-btn" onclick="deleteCartItem('${item.name}')">Жою</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join("");
+            cartTotalPrice.textContent = totalSum.toLocaleString() + " тг";
+        }
+
+        window.deleteCartItem = function(name) {
+            delete cart[name];
+            updateGlobalCartUI();
+            const activeBtn = document.querySelector(".cat-btn.active");
+            if (activeBtn) switchCategory(activeBtn.dataset.cat, false);
+        };
+
+        openCartModalBtn.addEventListener("click", () => cartModal.classList.add("open"));
+        closeCartBtn.addEventListener("click", () => cartModal.classList.remove("open"));
+        cartModal.addEventListener("click", (e) => {
+            if (e.target === cartModal) cartModal.classList.remove("open");
+        });
+
+        whatsappCheckoutBtn.addEventListener("click", () => {
+            const keys = Object.keys(cart);
+            if (keys.length === 0) return;
+            let text = "Здравствуйте! Хочу сделать заказ из магазина Imdiva:\n\n";
+            let total = 0;
+            keys.forEach((name, index) => {
+                const item = cart[name];
+                const sum = item.price * item.quantity;
+                total += sum;
+                text += `${index + 1}. *${item.name}* — ${item.quantity} шт. (${item.price.toLocaleString()} тг) = ${sum.toLocaleString()} тг\n`;
+            });
+            text += `\n*Барлығы / Итого: ${total.toLocaleString()} тг*`;
+            window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(text)}`, "_blank");
+        });
+
+        // Функция переключения звука
+        window.toggleSound = function(catKey) {
+            isMuted = !isMuted;
+            const iframe = document.getElementById(`iframe-${catKey}`);
+            const soundBtn = document.getElementById(`sound-btn-${catKey}`);
+            if (iframe) {
+                const videoId = categoryVideoIds[catKey];
+                // Перезагружаем iframe с нужным параметром звука
+                iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=${isMuted ? 1 : 0}&loop=1&playlist=${videoId}`;
+            }
+            if (soundBtn) {
+                soundBtn.textContent = isMuted ? "🔇" : "🔊";
+            }
+        };
+
+        function renderProducts(items, catKey) {
+            const videoId = categoryVideoIds[catKey];
+            let videoBoxHtml = "";
+            
+            if (videoId) {
+                videoBoxHtml = `
+                    <div class="category-header-video-box">
+                        <iframe id="iframe-${catKey}" src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}" allow="autoplay; encrypted-media"></iframe>
+                        <div class="video-overlay-controls">
+                            <div class="video-top-bar">
+                                <button class="video-ctrl-btn" id="sound-btn-${catKey}" onclick="toggleSound('${catKey}')" title="Включить/выключить звук">🔇</button>
+                                <button class="video-ctrl-btn" onclick="openVideoFullscreen('${catKey}')" title="На весь экран">🛈</button>
+                            </div>
+                            <div style="text-align: center; padding-bottom: 5px;">
+                                <button class="video-ctrl-btn" style="width: 100%; height: 28px; border-radius: 6px; font-size: 11px; font-family: 'Montserrat', sans-serif;" onclick="openVideoFullscreen('${catKey}')">На весь экран 🔍</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            if (!items || items.length === 0) {
+                contentEl.innerHTML = `
+                    ${videoBoxHtml}
+                    <div class="empty-category" style="margin-top:20px;">
+                        <h3>Топтама дайындалуда / Раздел наполняется</h3>
+                        <p>Скоро здесь появятся товары. Для заказа пишите нам в WhatsApp.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const cardsHtml = items.map(item => {
+                const imgUrl = `https://lh3.googleusercontent.com/d/${item.id}=w800`;
+                const cartItem = cart[item.name];
+                const qty = cartItem ? cartItem.quantity : 0;
+
+                if (!item.inStock) {
+                    return `
+                        <article class="product-card out-of-stock">
+                            <div class="product-image-wrap" onclick="openZoom('${imgUrl}')">
+                                <span class="sold-out-badge">Нет в наличии</span>
+                                <img src="${imgUrl}" alt="${item.name}" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <div>
+                                    <h3 class="product-name">${item.name}</h3>
+                                    <div class="product-price">${item.price.toLocaleString()} тг</div>
+                                </div>
+                                <span class="add-to-cart-simple disabled">
+                                    <span class="btn-main">Сатылымда жоқ</span>
+                                    <span class="btn-sub">Нет в наличии</span>
+                                </span>
+                            </div>
+                        </article>
+                    `;
+                }
+
+                let actionBlock = qty > 0 ? `
+                    <div class="card-cart-controls">
+                        <button class="card-qty-btn" onclick="changeItemQty('${item.name}', -1)">-</button>
+                        <span class="card-qty-count">${qty} шт.</span>
+                        <button class="card-qty-btn" onclick="changeItemQty('${item.name}', 1)">+</button>
+                    </div>
+                ` : `
+                    <button class="add-to-cart-simple" onclick='changeItemQty("${item.name}", 1, ${JSON.stringify(item)})'>
+                        <span class="btn-main">Себетке қосу</span>
+                        <span class="btn-sub">Добавить в корзину</span>
+                    </button>
+                `;
+
+                return `
+                    <article class="product-card">
+                        <div class="product-image-wrap" onclick="openZoom('${imgUrl}')">
+                            <img src="${imgUrl}" alt="${item.name}" loading="lazy">
+                        </div>
+                        <div class="product-info">
+                            <div>
+                                <h3 class="product-name">${item.name}</h3>
+                                <div class="product-price">${item.price.toLocaleString()} тг</div>
+                            </div>
+                            ${actionBlock}
+                        </div>
+                    </article>
+                `;
+            }).join("");
+
+            contentEl.innerHTML = `
+                ${videoBoxHtml}
+                <section class="products-grid">${cardsHtml}</section>
+            `;
+        }
+
+        function switchCategory(catKey, scrollToTop = true) {
+            const titleObj = categoryTitles[catKey];
+            headingEl.innerHTML = `
+                <h2>${titleObj.kz}</h2>
+                <p>${titleObj.ru}</p>
+            `;
+
+            if (catKey === "general") {
+                contentEl.innerHTML = `
+                    <div class="brand-story-card">
+                        <h3>Imdiva — сшито с любовью</h3>
+                        <p>Авторские аксессуары и изделия в современном национальном стиле. Ручная работа и премиальное качество.</p>
+                        <div class="info-highlights">
+                            <div class="highlight-item">
+                                <strong>Алматы</strong>
+                                <span>Доставка по Казахстану</span>
+                            </div>
+                            <div class="highlight-item">
+                                <strong>100% Ручная работа</strong>
+                                <span>Эксклюзивные детали</span>
+                            </div>
+                        </div>
+                        <div class="quick-actions">
+                            <a href="https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent('Здравствуйте!')}" target="_blank" class="white-action-btn">WhatsApp</a>
+                            <a href="https://www.instagram.com/d_iva_brand" target="_blank" class="white-action-btn">Instagram</a>
+                        </div>
+                    </div>
+                `;
+            } else if (catKey === "short_scarves") {
+                renderProducts(shortScarvesData, catKey);
+            } else {
+                renderProducts([], catKey);
+            }
+
+            if (scrollToTop) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        document.querySelectorAll(".cat-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                btn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+                switchCategory(btn.dataset.cat);
+            });
+        });
+
+        switchCategory("general", false);
+    </script>
+</body>
+</html>

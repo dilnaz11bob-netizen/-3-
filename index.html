@@ -6,20 +6,20 @@
     <title>Imdiva — Эксклюзивные шарфы и платки | Алматы</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-main: #fcfbf9;
+            --bg-main: #f8f7f4;
             --bg-card: #ffffff;
             --text-main: #1e232a;
             --brand-primary: #0b192c;
             --brand-hover: #162e4d;
-            --text-muted: #64748b;
+            --text-muted: #5a6577;
             --accent-color: #b91c1c;
-            --border-color: #e5e7eb;
-            --shadow-subtle: 0 10px 30px -5px rgba(11, 25, 44, 0.06);
-            --shadow-hover: 0 20px 40px -10px rgba(11, 25, 44, 0.12);
+            --border-color: #e2e8f0;
+            --shadow-subtle: 0 8px 24px -4px rgba(11, 25, 44, 0.06);
+            --shadow-hover: 0 16px 32px -8px rgba(11, 25, 44, 0.14);
             --radius-soft: 20px;
             --radius-btn: 14px;
         }
@@ -35,7 +35,7 @@
             background-color: var(--bg-main);
             color: var(--text-main);
             min-height: 100vh;
-            font-size: 17px;
+            font-size: 18px;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
@@ -58,12 +58,12 @@
             flex-direction: column;
             align-items: center;
             background: #ffffff;
-            padding: 20px 16px;
+            padding: 24px 16px;
         }
 
         .logo-wrapper {
             width: 100%;
-            max-width: 280px;
+            max-width: 260px;
             margin-bottom: 12px;
         }
 
@@ -76,71 +76,72 @@
 
         .welcome-city {
             font-size: 16px;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--text-muted);
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             margin-bottom: 4px;
         }
 
         .shop-title {
             font-size: 30px;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--brand-primary);
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             line-height: 1.2;
         }
 
         .phone-text {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--text-muted);
+            font-size: 21px;
+            font-weight: 800;
+            color: var(--brand-primary);
             margin-bottom: 8px;
             letter-spacing: 0.5px;
         }
 
+        /* Ссылка на Instagram без рамки и фона */
         .insta-link-box {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            font-size: 17px;
-            font-weight: 600;
+            font-size: 18px;
+            font-weight: 700;
             color: var(--brand-primary);
             margin-bottom: 32px;
             text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 12px;
-            border: 1.5px solid transparent;
-            transition: all 0.2s ease;
+            padding: 6px 12px;
+            border: none;
+            background: transparent;
+            transition: opacity 0.2s ease;
         }
 
         .insta-link-box:hover {
-            border-color: var(--brand-primary);
-            background-color: #fafaf9;
+            opacity: 0.75;
         }
 
         .insta-icon {
-            width: 22px;
-            height: 22px;
+            width: 24px;
+            height: 24px;
             object-fit: contain;
             border-radius: 4px;
         }
 
         .catalog-btn {
             width: 100%;
-            max-width: 320px;
-            padding: 16px 20px;
+            max-width: 350px;
+            padding: 20px 24px;
             background-color: var(--brand-primary);
             color: #ffffff;
             border: none;
             border-radius: var(--radius-btn);
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(11, 25, 44, 0.25);
+            box-shadow: 0 10px 25px rgba(11, 25, 44, 0.28);
             transition: all 0.25s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
+            gap: 6px;
         }
 
         .catalog-btn:hover {
@@ -148,25 +149,26 @@
             transform: translateY(-2px);
         }
 
-        .btn-ru-main {
-            font-size: 20px;
-            font-weight: 700;
+        .btn-main-title {
+            font-size: 24px;
+            font-weight: 800;
             line-height: 1.2;
             color: #ffffff;
         }
 
-        .btn-kz-sub {
-            font-size: 17px;
-            font-weight: 500;
-            color: #e2e8f0;
-            margin-top: 3px;
-            line-height: 1.2;
+        .btn-lang-split {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #cbd5e1;
         }
 
         /* ================= ЭКРАН 2: КАТАЛОГ ================= */
         #catalogScreen {
             display: none;
-            padding-bottom: 150px;
+            padding-bottom: 140px;
             background-color: var(--bg-main);
         }
 
@@ -174,279 +176,518 @@
             width: 100%;
             max-width: 760px;
             margin: 0 auto;
-            padding: 24px 16px;
+            padding: 16px;
         }
 
+        /* ШАПКА С ИНФОРМАЦИЕЙ ОБ ОПЛАТЕ */
         .header-banner {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-            padding: 16px 20px 24px;
             background: var(--bg-card);
             border-radius: var(--radius-soft);
             box-shadow: var(--shadow-subtle);
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             border: 1px solid var(--border-color);
+            position: relative;
         }
 
-        .back-home {
+        .header-banner-inner {
+            padding: 20px 20px 52px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            align-items: center;
+        }
+
+        .catalog-top-row {
             width: 100%;
-            text-decoration: none;
-            color: var(--brand-primary);
-            font-size: 15px;
-            font-weight: 600;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            padding: 12px 16px;
-            border-radius: var(--radius-btn);
-            border: 1.5px solid var(--border-color);
-            background: #fafaf9;
-            cursor: pointer;
-            transition: all 0.2s ease;
         }
 
-        .back-home:hover {
-            background: #ffffff;
-            border-color: var(--brand-primary);
+        .catalog-logo-container {
+            width: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .header-logo {
-            max-width: 140px;
+        .catalog-logo-container img {
+            width: 100%;
             height: auto;
+            object-fit: contain;
             display: block;
         }
 
-        /* ДИНАМИЧЕСКАЯ ЛИПКАЯ ПАНЕЛЬ КАТЕГОРИЙ */
+        .payment-images-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            width: 100%;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
+            transform: scaleY(1);
+            transform-origin: top;
+            max-height: 800px;
+            overflow: hidden;
+        }
+
+        .payment-img-card {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            background: #f8fafc;
+            border: 2px dashed var(--border-color);
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            transition: border-color 0.2s ease;
+        }
+
+        .payment-img-card:hover {
+            border-color: var(--brand-primary);
+        }
+
+        .payment-img-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .payment-placeholder-text {
+            padding: 16px;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+
+        .payment-placeholder-text span {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        /* Полукруглая стрелка, ведущая точно на блок подарочной упаковки внизу */
+        .catalog-semicircle-arrow {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 38px;
+            background: #f1f5f9;
+            border: 1px solid var(--border-color);
+            border-bottom: none;
+            border-radius: 70px 70px 0 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            color: var(--brand-primary);
+            padding-top: 3px;
+        }
+
+        .catalog-semicircle-arrow:hover {
+            background: #e2e8f0;
+        }
+
+        .catalog-semicircle-arrow .arrow-label {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            line-height: 1;
+        }
+
+        .catalog-semicircle-arrow .arrow-icon {
+            font-size: 14px;
+            line-height: 1.1;
+            margin-top: 2px;
+            animation: softBounce 2s infinite;
+        }
+
+        @keyframes softBounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(2px); }
+            60% { transform: translateY(1px); }
+        }
+
+        .header-banner.collapsed {
+            border-color: var(--brand-primary);
+            box-shadow: 0 4px 15px rgba(11, 25, 44, 0.08);
+        }
+
+        .header-banner.collapsed .header-banner-inner {
+            padding: 10px 16px;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .header-banner.collapsed .payment-images-container {
+            max-height: 0;
+            opacity: 0;
+            margin: 0;
+            pointer-events: none;
+            transform: scaleY(0);
+        }
+
+        .header-banner.collapsed .catalog-semicircle-arrow {
+            opacity: 0;
+            pointer-events: none;
+            display: none;
+        }
+
+        .header-banner.collapsed .catalog-logo-container {
+            transform: scale(0.75);
+            transform-origin: left center;
+        }
+
+        .collapsed-hint {
+            display: none;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--brand-primary);
+        }
+
+        .header-banner.collapsed .collapsed-hint {
+            display: block;
+        }
+
+        /* ================= ЛЕНТА КАТЕГОРИЙ ================= */
         .categories-section {
             position: sticky;
             top: 0;
-            z-index: 50;
-            background-color: rgba(252, 251, 249, 0.97);
-            backdrop-filter: blur(8px);
-            padding: 14px 0;
+            z-index: 60;
+            background: linear-gradient(180deg, #0b192c 0%, #152b47 100%);
+            padding: 16px 16px 18px;
             margin: 0 -16px 20px;
-            border-bottom: 1px solid var(--border-color);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 25px rgba(11, 25, 44, 0.22);
+            border-bottom-left-radius: 22px;
+            border-bottom-right-radius: 22px;
+            transition: padding 0.25s ease;
         }
 
         .categories-section.scrolled {
-            padding: 6px 0;
-            background-color: rgba(255, 255, 255, 0.99);
-            box-shadow: 0 4px 20px rgba(11, 25, 44, 0.08);
+            padding: 10px 16px 12px;
+            border-radius: 0;
         }
 
         .categories-wrapper-inner {
             max-width: 760px;
             margin: 0 auto;
-            padding: 0 16px;
         }
 
-        .categories-label {
-            font-size: 12px;
+        .categories-header-hint {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .categories-section.scrolled .categories-header-hint {
+            display: none;
+        }
+
+        .cat-hint-texts {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cat-hint-kz {
+            font-size: 16px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 0.3px;
+        }
+
+        .cat-hint-ru {
+            font-size: 14px;
+            font-weight: 600;
+            color: #cbd5e1;
+        }
+
+        .cat-swipe-badge {
+            background: rgba(255, 255, 255, 0.16);
+            color: #ffffff;
+            font-size: 13px;
             font-weight: 700;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-            text-align: left;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: all 0.25s ease;
-        }
-
-        .categories-section.scrolled .categories-label {
-            opacity: 0;
-            height: 0;
-            margin: 0;
-            overflow: hidden;
+            padding: 6px 12px;
+            border-radius: 20px;
+            white-space: nowrap;
         }
 
         .categories-scroll {
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
-            gap: 8px;
+            gap: 12px;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
-            scrollbar-width: thin;
-            scrollbar-color: var(--brand-primary) var(--border-color);
-            padding-bottom: 4px;
+            scrollbar-width: none;
+            padding: 4px 2px 6px;
         }
 
         .categories-scroll::-webkit-scrollbar {
-            height: 3px;
-        }
-
-        .categories-scroll::-webkit-scrollbar-thumb {
-            background-color: var(--border-color);
-            border-radius: 4px;
+            display: none;
         }
 
         .cat-btn {
             flex: 0 0 auto;
-            background-color: var(--bg-card);
-            color: var(--text-main);
-            border: 1.5px solid var(--border-color);
-            border-radius: 12px;
-            padding: 10px 16px;
+            background-color: #ffffff;
+            color: var(--brand-primary);
+            border: 2.5px solid transparent;
+            border-radius: 16px;
+            padding: 12px 18px;
             font-family: inherit;
             cursor: pointer;
-            text-align: center;
+            text-align: left;
             display: inline-flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            max-width: 190px;
-            white-space: normal;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            min-width: 170px;
+            max-width: 240px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         .categories-section.scrolled .cat-btn {
-            padding: 5px 10px;
-            border-radius: 8px;
+            padding: 8px 14px;
+            min-width: 145px;
         }
 
-        .cat-btn .cat-main {
+        .cat-btn .cat-kz {
             font-size: 16px;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--brand-primary);
-            line-height: 1.2;
-            transition: font-size 0.25s ease;
+            line-height: 1.25;
+            display: block;
         }
 
-        .categories-section.scrolled .cat-btn .cat-main {
-            font-size: 12px;
+        .cat-btn .cat-divider {
+            height: 1px;
+            background: #e2e8f0;
+            margin: 5px 0;
+            width: 100%;
         }
 
-        .cat-btn .cat-sub {
-            font-size: 11px;
-            font-weight: 500;
+        .cat-btn .cat-ru {
+            font-size: 14px;
+            font-weight: 600;
             color: var(--text-muted);
-            margin-top: 1px;
-            line-height: 1.1;
-            transition: all 0.25s ease;
-        }
-
-        .categories-section.scrolled .cat-btn .cat-sub {
-            font-size: 9px;
-            opacity: 0.8;
-        }
-
-        .cat-btn:hover {
-            border-color: var(--brand-primary);
+            line-height: 1.25;
+            display: block;
         }
 
         .cat-btn.active {
-            background-color: var(--brand-primary);
-            border-color: var(--brand-primary);
-            box-shadow: 0 4px 12px rgba(11, 25, 44, 0.2);
+            background-color: #fef3c7;
+            border-color: #f59e0b;
+            transform: translateY(-2px);
         }
 
-        .cat-btn.active .cat-main,
-        .cat-btn.active .cat-sub {
+        .cat-btn.sale-festive {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef2f2 100%);
+            border: 3px solid #f59e0b;
+            box-shadow: 0 0 18px rgba(245, 158, 11, 0.55);
+            position: relative;
+            overflow: visible;
+        }
+
+        .cat-btn.sale-festive::before {
+            content: "✨ АКЦИЯ";
+            position: absolute;
+            top: -11px;
+            right: 12px;
+            background: linear-gradient(90deg, #dc2626, #d97706);
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 2px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 3px 8px rgba(220, 38, 38, 0.35);
+        }
+
+        .cat-btn.sale-festive .cat-kz {
+            color: #b91c1c;
+        }
+
+        .cat-btn.sale-festive .cat-ru {
+            color: #92400e;
+            font-weight: 700;
+        }
+
+        .cat-btn.sale-festive.active {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            border-color: #fde047;
+            box-shadow: 0 0 22px rgba(253, 224, 71, 0.7);
+        }
+
+        .cat-btn.sale-festive.active .cat-kz,
+        .cat-btn.sale-festive.active .cat-ru {
             color: #ffffff;
         }
 
-        /* Заголовок активного раздела */
+        .cat-btn.sale-festive.active .cat-divider {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* ЗАГОЛОВОК РАЗДЕЛА */
         .section-heading {
-            margin-bottom: 24px;
-            text-align: center;
-            padding: 24px 20px;
+            margin-bottom: 20px;
+            padding: 22px 20px;
             background-color: var(--bg-card);
             border-radius: var(--radius-soft);
             box-shadow: var(--shadow-subtle);
             border: 1px solid var(--border-color);
+            text-align: center;
         }
 
-        .section-heading h2 {
-            font-size: 22px;
-            font-weight: 700;
+        .section-heading.sale-heading-festive {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef2f2 100%);
+            border: 3px solid #f59e0b;
+            box-shadow: 0 10px 28px rgba(217, 119, 6, 0.16);
+        }
+
+        .heading-lang-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .heading-kz {
+            font-size: 23px;
+            font-weight: 800;
             color: var(--brand-primary);
-            line-height: 1.3;
+            line-height: 1.25;
         }
 
-        .section-heading p {
-            font-size: 15px;
-            font-weight: 500;
+        .section-heading.sale-heading-festive .heading-kz {
+            color: #b91c1c;
+        }
+
+        .heading-sep {
+            width: 60px;
+            height: 2px;
+            background: #cbd5e1;
+            border-radius: 2px;
+        }
+
+        .heading-ru {
+            font-size: 19px;
+            font-weight: 700;
             color: var(--text-muted);
-            margin-top: 6px;
+            line-height: 1.25;
         }
 
-        /* Карточка о бренде */
+        /* ОПИСАНИЕ КАТЕГОРИИ */
+        .category-k1-description {
+            background: #ffffff;
+            border: 1.5px solid var(--border-color);
+            border-left: 6px solid var(--brand-primary);
+            border-radius: 16px;
+            padding: 20px 22px;
+            margin-bottom: 24px;
+            font-size: 18px;
+            line-height: 1.65;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .lang-card-kz {
+            padding-bottom: 14px;
+            margin-bottom: 14px;
+            border-bottom: 1.5px dashed #cbd5e1;
+        }
+
+        .desc-text-body {
+            display: block;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .discount-badge-highlight {
+            display: inline-block;
+            margin-top: 8px;
+            margin-bottom: 4px;
+            padding: 8px 14px;
+            background-color: #fef2f2;
+            color: var(--accent-color);
+            border: 2px dashed var(--accent-color);
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 800;
+            line-height: 1.35;
+        }
+
+        .discount-inline-highlight {
+            background-color: #fef2f2;
+            color: var(--accent-color);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-weight: 800;
+            border: 1px solid #fecaca;
+        }
+
+        /* КАРТОЧКА О БРЕНДЕ */
         .brand-story-card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-soft);
-            padding: 32px 24px;
+            padding: 28px 22px;
             text-align: center;
             box-shadow: var(--shadow-subtle);
         }
 
         .brand-story-card h3 {
             font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 14px;
+            font-weight: 800;
+            margin-bottom: 12px;
             color: var(--brand-primary);
         }
 
-        .brand-story-card p {
-            font-size: 16px;
-            line-height: 1.7;
-            color: var(--text-muted);
-            margin-bottom: 24px;
-        }
-
-        .info-highlights {
+        .brand-lang-box {
             display: flex;
             flex-direction: column;
             gap: 12px;
-            margin-bottom: 28px;
-        }
-
-        .highlight-item {
-            background: #fafaf9;
-            border-radius: 14px;
-            padding: 16px;
-            border: 1px solid var(--border-color);
+            margin-bottom: 22px;
             text-align: left;
-        }
-
-        .highlight-item strong {
-            display: block;
-            font-size: 16px;
-            color: var(--brand-primary);
-            margin-bottom: 2px;
-        }
-
-        .highlight-item span {
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-
-        .quick-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .white-action-btn {
-            background-color: var(--brand-primary);
-            color: #ffffff;
-            border-radius: var(--radius-btn);
+            background: #f8fafc;
             padding: 16px;
-            font-size: 16px;
-            font-weight: 600;
-            text-decoration: none;
-            text-align: center;
-            display: block;
-            box-shadow: var(--shadow-subtle);
-            transition: background-color 0.2s;
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
         }
 
-        .white-action-btn:hover {
-            background-color: var(--brand-hover);
+        .general-photo-card {
+            width: 100%;
+            background: #f8fafc;
+            border: 2px dashed var(--border-color);
+            border-radius: 14px;
+            overflow: hidden;
+            aspect-ratio: 4 / 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .general-photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         /* СЕТКА ТОВАРОВ */
@@ -459,7 +700,7 @@
         @media (max-width: 480px) {
             .products-grid {
                 grid-template-columns: 1fr;
-                gap: 16px;
+                gap: 18px;
             }
         }
 
@@ -472,6 +713,11 @@
             flex-direction: column;
             box-shadow: var(--shadow-subtle);
             transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .product-card.sale-product-card {
+            border: 2px solid #f59e0b;
+            box-shadow: 0 8px 24px rgba(245, 158, 11, 0.14);
         }
 
         .product-card:hover {
@@ -489,7 +735,6 @@
             background-color: #f3f4f6;
             position: relative;
             overflow: hidden;
-            cursor: pointer;
         }
 
         .product-image-wrap img {
@@ -497,25 +742,6 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.4s ease;
-        }
-
-        .product-image-wrap:hover img {
-            transform: scale(1.04);
-        }
-
-        .zoom-hint {
-            position: absolute;
-            bottom: 12px;
-            right: 12px;
-            background: rgba(255, 255, 255, 0.92);
-            color: var(--brand-primary);
-            font-size: 12px;
-            font-weight: 600;
-            padding: 6px 10px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(4px);
         }
 
         .sold-out-badge {
@@ -523,16 +749,19 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.96);
             color: var(--accent-color);
             border: 2px solid var(--accent-color);
             padding: 12px 20px;
             border-radius: 12px;
-            font-size: 15px;
-            font-weight: 700;
+            font-size: 16px;
+            font-weight: 800;
             text-align: center;
             z-index: 5;
             box-shadow: 0 10px 25px rgba(185, 28, 28, 0.15);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
         }
 
         .product-info {
@@ -545,64 +774,86 @@
             gap: 14px;
         }
 
-        .product-name {
-            font-size: 18px;
-            font-weight: 700;
+        .product-name-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .product-name-kz {
+            font-size: 19px;
+            font-weight: 800;
             color: var(--brand-primary);
-            line-height: 1.4;
+            line-height: 1.35;
+        }
+
+        .product-name-ru {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-muted);
+            line-height: 1.35;
         }
 
         .product-price {
-            font-size: 19px;
-            font-weight: 700;
+            font-size: 21px;
+            font-weight: 800;
             color: var(--accent-color);
-            margin-top: 4px;
+            margin-top: 6px;
         }
 
         /* БЛОК УПАКОВКИ В САМОМ НИЗУ */
         .packaging-divider {
-            margin: 48px 0 20px;
+            margin: 44px 0 20px;
             text-align: center;
-            padding: 28px 20px;
+            padding: 26px 20px;
             background: linear-gradient(135deg, var(--brand-primary) 0%, #162e4d 100%);
             border-radius: var(--radius-soft);
             color: #ffffff;
             box-shadow: var(--shadow-subtle);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
         }
 
         .packaging-divider h3 {
             font-size: 22px;
-            font-weight: 700;
+            font-weight: 800;
             color: #ffffff;
-            margin-bottom: 6px;
         }
 
-        .packaging-divider p {
+        .packaging-divider .pack-sub-kz {
+            font-size: 15px;
+            color: #e2e8f0;
+            font-weight: 600;
+        }
+
+        .packaging-divider .pack-sub-ru {
             font-size: 14px;
-            color: #cbd5e1;
+            color: #94a3b8;
+            font-weight: 500;
         }
 
-        /* Кнопка прокрутки (динамическая стрелочка вниз/вверх) */
+        /* Кнопка прокрутки */
         .scroll-action-btn {
             position: fixed;
-            bottom: 95px;
+            bottom: 98px;
             right: 16px;
-            width: 48px;
-            height: 48px;
+            width: 52px;
+            height: 52px;
             background-color: var(--brand-primary);
             color: #ffffff;
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.25);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
+            font-size: 24px;
             cursor: pointer;
             z-index: 85;
             box-shadow: 0 6px 20px rgba(11, 25, 44, 0.3);
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
         }
 
         .scroll-action-btn.visible {
@@ -610,12 +861,7 @@
             visibility: visible;
         }
 
-        .scroll-action-btn:hover {
-            transform: scale(1.08);
-            background-color: var(--brand-hover);
-        }
-
-        /* Интерактивные элементы */
+        /* Кнопки заказа */
         .add-to-cart-simple {
             width: 100%;
             background-color: var(--brand-primary);
@@ -627,6 +873,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            gap: 2px;
             font-family: inherit;
             transition: background-color 0.2s;
         }
@@ -643,20 +890,19 @@
         .add-to-cart-simple.included-badge {
             background-color: #f1f5f9;
             color: var(--brand-primary);
-            border: 1px solid var(--border-color);
+            border: 1.5px solid var(--brand-primary);
             cursor: default;
         }
 
         .btn-main {
-            font-size: 15px;
-            font-weight: 700;
+            font-size: 16px;
+            font-weight: 800;
         }
 
         .btn-sub {
-            font-size: 12px;
-            font-weight: 400;
+            font-size: 14px;
+            font-weight: 600;
             color: #cbd5e1;
-            margin-top: 1px;
         }
         
         .add-to-cart-simple.included-badge .btn-sub {
@@ -676,11 +922,11 @@
         .card-qty-btn {
             background: var(--brand-primary);
             border: none;
-            width: 38px;
-            height: 38px;
-            border-radius: 9px;
-            font-size: 20px;
-            font-weight: 700;
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            font-size: 22px;
+            font-weight: 800;
             color: #ffffff;
             cursor: pointer;
             display: flex;
@@ -689,12 +935,12 @@
         }
 
         .card-qty-count {
-            font-size: 16px;
-            font-weight: 700;
+            font-size: 17px;
+            font-weight: 800;
             color: var(--brand-primary);
         }
 
-        /* НИЖНЯЯ ПАНЕЛЬ КОРЗИНЫ */
+        /* КОРЗИНА ВНИЗУ */
         .bottom-cart-bar {
             position: fixed;
             bottom: 0;
@@ -702,13 +948,13 @@
             right: 0;
             background: var(--bg-card);
             border-top: 2px solid var(--brand-primary);
-            padding: 16px 20px;
+            padding: 12px 18px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 12px;
             z-index: 90;
-            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
             max-width: 760px;
             margin: 0 auto;
         }
@@ -720,14 +966,16 @@
 
         .bottom-cart-title {
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--text-muted);
+            line-height: 1.2;
         }
 
         .bottom-cart-total {
-            font-size: 20px;
-            font-weight: 700;
+            font-size: 22px;
+            font-weight: 800;
             color: var(--accent-color);
+            margin-top: 2px;
         }
 
         .bottom-cart-btn {
@@ -735,27 +983,50 @@
             color: #ffffff;
             border: none;
             border-radius: var(--radius-btn);
-            padding: 14px 22px;
+            padding: 12px 18px;
             font-family: inherit;
-            font-size: 15px;
-            font-weight: 700;
             cursor: pointer;
-            text-align: center;
-            line-height: 1.2;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             box-shadow: 0 4px 15px rgba(11, 25, 44, 0.25);
-            transition: transform 0.2s;
+            text-align: left;
         }
 
-        .bottom-cart-btn:hover {
-            transform: scale(1.02);
-            background-color: var(--brand-hover);
+        .cart-icon-circle {
+            width: 38px;
+            height: 38px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            flex-shrink: 0;
+        }
+
+        .cart-btn-text-wrap {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-btn-kz {
+            font-size: 15px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .cart-btn-ru {
+            font-size: 13px;
+            font-weight: 600;
+            color: #cbd5e1;
         }
 
         /* МОДАЛЬНЫЕ ОКНА */
         .image-modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(11, 25, 44, 0.9);
+            background: rgba(11, 25, 44, 0.92);
             z-index: 200;
             display: flex;
             flex-direction: column;
@@ -765,7 +1036,6 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.25s ease;
-            backdrop-filter: blur(6px);
         }
 
         .image-modal-overlay.open {
@@ -781,7 +1051,6 @@
             background: #000;
             border-radius: var(--radius-soft);
             overflow: hidden;
-            box-shadow: var(--shadow-hover);
         }
 
         .image-modal-content img {
@@ -799,8 +1068,8 @@
             border-radius: var(--radius-btn);
             padding: 14px 32px;
             font-family: inherit;
-            font-size: 15px;
-            font-weight: 700;
+            font-size: 16px;
+            font-weight: 800;
             cursor: pointer;
         }
 
@@ -815,7 +1084,6 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.25s ease;
-            backdrop-filter: blur(4px);
         }
 
         .cart-modal-overlay.open {
@@ -830,7 +1098,7 @@
             max-height: 90vh;
             border-top-left-radius: 32px;
             border-top-right-radius: 32px;
-            padding: 28px 20px 32px;
+            padding: 26px 20px 30px;
             display: flex;
             flex-direction: column;
             box-shadow: 0 -15px 40px rgba(0,0,0,0.15);
@@ -845,9 +1113,20 @@
             padding-bottom: 14px;
         }
 
-        .cart-header h3 {
+        .cart-header-titles {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-header-kz {
             font-size: 20px;
             color: var(--brand-primary);
+            font-weight: 800;
+        }
+
+        .cart-header-ru {
+            font-size: 16px;
+            color: var(--text-muted);
             font-weight: 700;
         }
 
@@ -857,7 +1136,7 @@
             border-radius: 10px;
             padding: 8px 14px;
             font-size: 15px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             color: var(--brand-primary);
         }
@@ -869,7 +1148,6 @@
             flex-direction: column;
             gap: 12px;
             margin-bottom: 16px;
-            padding-right: 4px;
         }
 
         .cart-item {
@@ -894,8 +1172,8 @@
             right: 12px;
             background: var(--brand-primary);
             color: #fff;
-            font-size: 11px;
-            font-weight: 700;
+            font-size: 12px;
+            font-weight: 800;
             padding: 2px 8px;
             border-radius: 6px;
         }
@@ -914,13 +1192,13 @@
 
         .cart-item-title {
             font-size: 16px;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--brand-primary);
         }
 
         .cart-item-price {
-            font-size: 15px;
-            font-weight: 600;
+            font-size: 16px;
+            font-weight: 700;
             color: var(--accent-color);
             margin-top: 2px;
         }
@@ -935,19 +1213,19 @@
         .qty-btn {
             background: var(--brand-primary);
             border: none;
-            width: 32px;
-            height: 32px;
+            width: 34px;
+            height: 34px;
             border-radius: 8px;
             cursor: pointer;
-            font-weight: 700;
+            font-weight: 800;
             color: #ffffff;
-            font-size: 16px;
+            font-size: 18px;
         }
 
         .cart-qty-num {
-            font-size: 15px;
-            font-weight: 700;
-            min-width: 20px;
+            font-size: 16px;
+            font-weight: 800;
+            min-width: 24px;
             text-align: center;
         }
 
@@ -957,8 +1235,8 @@
             color: var(--accent-color);
             border-radius: 8px;
             padding: 6px 10px;
-            font-size: 12px;
-            font-weight: 600;
+            font-size: 13px;
+            font-weight: 700;
             cursor: pointer;
             margin-left: auto;
         }
@@ -975,37 +1253,43 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 18px;
-            font-weight: 700;
+            font-size: 19px;
+            font-weight: 800;
             color: var(--brand-primary);
         }
 
         .whatsapp-checkout-btn {
-            background-color: var(--brand-primary);
+            background-color: #16a34a;
             color: #ffffff;
             border: none;
             border-radius: var(--radius-btn);
             padding: 16px;
             font-family: inherit;
-            font-size: 17px;
-            font-weight: 700;
-            text-align: center;
             cursor: pointer;
-            line-height: 1.3;
-            box-shadow: 0 4px 15px rgba(11, 25, 44, 0.3);
-            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            box-shadow: 0 6px 18px rgba(22, 163, 74, 0.3);
         }
 
-        .whatsapp-checkout-btn:hover {
-            transform: scale(1.02);
-            background-color: var(--brand-hover);
+        .wa-btn-kz {
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .wa-btn-ru {
+            font-size: 15px;
+            font-weight: 600;
+            color: #dcfce7;
         }
 
         .empty-cart-msg, .empty-category {
             text-align: center;
             padding: 40px 16px;
             color: var(--text-muted);
-            font-size: 16px;
+            font-size: 17px;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -1023,16 +1307,18 @@
             
             <div class="phone-text">8 707 778 76 61</div>
             
-            <!-- Ссылка на Instagram с вашим новым значком Untitled7_20261122204449.png -->
+            <!-- Ссылка на Instagram без рамки и фона -->
             <a href="https://www.instagram.com/d_iva_brand" target="_blank" rel="noopener noreferrer" class="insta-link-box">
                 <img src="Untitled7_20261122204449.png" alt="Instagram" class="insta-icon">
                 <span>D_iva_brand</span>
             </a>
             
-            <!-- КНОПКА В ТЕМНО-ГОЛУБОМ ЦВЕТЕ НА ДВУХ ЯЗЫКАХ -->
             <button class="catalog-btn" id="goToCatalogBtn">
-                <span class="btn-ru-main">Каталог</span>
-                <span class="btn-kz-sub">Тапсырыс беру</span>
+                <span class="btn-main-title">Каталог</span>
+                <div class="btn-lang-split">
+                    <span>Тапсырыс беру</span>
+                    <span>Оформить заказ</span>
+                </div>
             </button>
         </div>
     </main>
@@ -1040,29 +1326,68 @@
     <!-- ЭКРАН 2: КАТАЛОГ -->
     <div id="catalogScreen">
         <div class="container">
-            <header class="header-banner">
-                <img src="37918-removebg-preview.png" alt="Imdiva" class="header-logo">
-                <button class="back-home" id="goBackHomeBtn">
-                    ← На главную страницу / Басты бетке
-                </button>
+            
+            <!-- ШАПКА С ИНФОРМАЦИЕЙ ОБ ОПЛАТЕ (БЕЗ КНОПКИ ВОЗВРАТА) -->
+            <header class="header-banner" id="headerBanner">
+                <div class="header-banner-inner">
+                    <div class="catalog-top-row">
+                        <div class="catalog-logo-container">
+                            <img src="37918-removebg-preview.png" alt="Imdiva">
+                        </div>
+                    </div>
+                    
+                    <span class="collapsed-hint">💳 Информация об оплате (нажмите, чтобы развернуть)</span>
+
+                    <div class="payment-images-container" id="paymentImagesContainer">
+                        <div class="payment-img-card" id="paymentCard1">
+                            <div class="payment-placeholder-text">
+                                💳 Оплата (Часть 1)
+                                <span>Скоро здесь будет картинка</span>
+                            </div>
+                        </div>
+                        <div class="payment-img-card" id="paymentCard2">
+                            <div class="payment-placeholder-text">
+                                💳 Оплата (Часть 2)
+                                <span>Скоро здесь будет картинка</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="catalog-semicircle-arrow" onclick="document.getElementById('bottomPackagingContainer').scrollIntoView({behavior: 'smooth'});">
+                        <span class="arrow-label">Упаковка ↓</span>
+                        <span class="arrow-icon">↓</span>
+                    </div>
+                </div>
             </header>
 
             <!-- ЛЕНТА КАТЕГОРИЙ -->
             <section class="categories-section" id="categoriesSection">
                 <div class="categories-wrapper-inner">
-                    <div class="categories-label">Выберите интересующий раздел:</div>
+                    <div class="categories-header-hint">
+                        <div class="cat-hint-texts">
+                            <span class="cat-hint-kz">Бөлімді таңдаңыз</span>
+                            <span class="cat-hint-ru">Выберите раздел каталога</span>
+                        </div>
+                        <span class="cat-swipe-badge">Листайте вбок →</span>
+                    </div>
+
                     <div class="categories-scroll" id="categoryTabs">
                         <button class="cat-btn active" data-cat="general">
-                            <span class="cat-main">Жалпы ақпарат</span>
-                            <span class="cat-sub">Общая информация</span>
+                            <span class="cat-kz">Жалпы ақпарат</span>
+                            <span class="cat-divider"></span>
+                            <span class="cat-ru">Общая информация</span>
                         </button>
                     </div>
                 </div>
             </section>
 
+            <!-- ЗАГОЛОВОК ВЫБРАННОГО РАЗДЕЛА -->
             <div class="section-heading" id="sectionHeading">
-                <h2>Жалпы ақпарат / Общая информация</h2>
-                <p>Imdiva — сшито с любовью • Алматы</p>
+                <div class="heading-lang-block">
+                    <span class="heading-kz">Жалпы ақпарат</span>
+                    <span class="heading-sep"></span>
+                    <span class="heading-ru">Общая информация</span>
+                </div>
             </div>
 
             <!-- ОСНОВНОЙ КОНТЕНТ -->
@@ -1070,7 +1395,7 @@
                 <div class="empty-category">Деректер жүктелуде / Загрузка...</div>
             </main>
 
-            <!-- БЛОК УПАКОВОК В САМОМ НИЗУ -->
+            <!-- БЛОК УПАКОВКИ В САМОМ НИЗУ -->
             <section id="bottomPackagingContainer"></section>
         </div>
     </div>
@@ -1079,15 +1404,19 @@
     <button class="scroll-action-btn" id="scrollActionBtn" title="Прокрутить">↓</button>
 
     <!-- НИЖНЯЯ ПАНЕЛЬ КОРЗИНЫ -->
-    <div class="bottom-cart-bar" id="bottomCartBar" style="display: none;">
+    <button class="bottom-cart-bar" id="bottomCartBar" style="display: none;" onclick="document.getElementById('openCartModalBtn').click();">
         <div class="bottom-cart-info">
-            <span class="bottom-cart-title">Таңдалды / Выбрано: <span id="cartCountBadge">0</span></span>
+            <span class="bottom-cart-title">Барлығы / Итого:</span>
             <span class="bottom-cart-total" id="bottomCartTotal">0 тг</span>
         </div>
-        <button class="bottom-cart-btn" id="openCartModalBtn">
-            Себетті ашу /<br>Открыть корзину
-        </button>
-    </div>
+        <div class="bottom-cart-btn" id="openCartModalBtn">
+            <div class="cart-icon-circle">🛒</div>
+            <div class="cart-btn-text-wrap">
+                <span class="cart-btn-kz">Себетті ашу</span>
+                <span class="cart-btn-ru">Открыть корзину</span>
+            </div>
+        </div>
+    </button>
 
     <!-- МОДАЛЬНОЕ ОКНО ФОТО -->
     <div class="image-modal-overlay" id="imageModal">
@@ -1099,7 +1428,10 @@
     <div class="cart-modal-overlay" id="cartModal">
         <div class="cart-modal">
             <div class="cart-header">
-                <h3>Себет / Ваша корзина</h3>
+                <div class="cart-header-titles">
+                    <span class="cart-header-kz">Себет</span>
+                    <span class="cart-header-ru">Ваша корзина</span>
+                </div>
                 <button class="close-cart-btn" id="closeCartBtn">Жабу / Закрыть</button>
             </div>
             <div class="cart-items-list" id="cartItemsList"></div>
@@ -1109,7 +1441,8 @@
                     <span id="cartTotalPrice">0 тг</span>
                 </div>
                 <button class="whatsapp-checkout-btn" id="whatsappCheckoutBtn">
-                    WhatsApp арқылы тапсырыс беру<br>Оформить заказ в WhatsApp
+                    <span class="wa-btn-kz">WhatsApp арқылы тапсырыс беру</span>
+                    <span class="wa-btn-ru">Оформить заказ в WhatsApp</span>
                 </button>
             </div>
         </div>
@@ -1124,14 +1457,15 @@
         let allPackagingItems = [];
         let parsedItemsRegistry = {};
         let defaultFreePackaging = null;
+        let globalGeneralPhotoA1 = "";
+        let paymentImagesList = [];
 
         const welcomeScreen = document.getElementById("welcomeScreen");
         const catalogScreen = document.getElementById("catalogScreen");
+        const headerBanner = document.getElementById("headerBanner");
         const categoriesSection = document.getElementById("categoriesSection");
         const goToCatalogBtn = document.getElementById("goToCatalogBtn");
-        const goBackHomeBtn = document.getElementById("goBackHomeBtn");
         const bottomCartBar = document.getElementById("bottomCartBar");
-        const cartCountBadge = document.getElementById("cartCountBadge");
         const bottomCartTotal = document.getElementById("bottomCartTotal");
         const openCartModalBtn = document.getElementById("openCartModalBtn");
         const scrollActionBtn = document.getElementById("scrollActionBtn");
@@ -1146,6 +1480,52 @@
         const modalContainer = document.getElementById("modalContainer");
         const closeImgModal = document.getElementById("closeImgModal");
 
+        headerBanner.addEventListener("click", (e) => {
+            if (headerBanner.classList.contains("collapsed")) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+
+        function splitBilingualText(rawText) {
+            if (!rawText) return { kz: '', ru: '' };
+            const str = String(rawText).trim();
+
+            if (str.includes(' / ')) {
+                const parts = str.split(' / ');
+                return { kz: parts[0].trim(), ru: parts.slice(1).join(' / ').trim() };
+            }
+            if (str.includes('/')) {
+                const parts = str.split('/');
+                if (parts.length === 2 && parts[0].trim().length > 2 && parts[1].trim().length > 2) {
+                    return { kz: parts[0].trim(), ru: parts[1].trim() };
+                }
+            }
+
+            const ruStartRegex = /(Короткие|Длинные|Авторские|Искусственный|Натуральный|Шелковый|Шелк|Платок|Шарф|Распродажа|Скидк|Подароч|Входит|Комплект)/i;
+            const matchIdx = str.search(ruStartRegex);
+            if (matchIdx > 2) {
+                return {
+                    kz: str.substring(0, matchIdx).trim(),
+                    ru: str.substring(matchIdx).trim()
+                };
+            }
+
+            return { kz: str, ru: '' };
+        }
+
+        function isSaleCategory(catName) {
+            const lower = String(catName).toLowerCase();
+            return lower.includes('распродаж') || lower.includes('жеңілдік') || lower.includes('sale') || lower.includes('акци') || lower.includes('скидк');
+        }
+
+        function highlightAllDiscounts(text, asBlock = false) {
+            if (!text) return '';
+            const badgeClass = asBlock ? 'discount-badge-highlight' : 'discount-inline-highlight';
+            const icon = asBlock ? '🎁 ' : '';
+            const discountRegex = /(\d+\s*данадан\s*бастап\s*жеңілдіктер\s*бар\.?|жеңілдіктер\s*бар\.?|жеңілдік\w*|скидки\s*от\s*\d+\s*штук\.?|скидк[аиуео]\w*)/gi;
+            return text.replace(discountRegex, (match) => `<span class="${badgeClass}">${icon}${match}</span>`);
+        }
+
         window.addEventListener("scroll", () => {
             if (catalogScreen.style.display === "block") {
                 const scrollHeight = document.documentElement.scrollHeight;
@@ -1153,6 +1533,12 @@
                 const clientHeight = document.documentElement.clientHeight;
                 
                 if (scrollTop > 40) {
+                    headerBanner.classList.add("collapsed");
+                } else {
+                    headerBanner.classList.remove("collapsed");
+                }
+
+                if (scrollTop > 50) {
                     categoriesSection.classList.add("scrolled");
                 } else {
                     categoriesSection.classList.remove("scrolled");
@@ -1162,10 +1548,8 @@
                     scrollActionBtn.classList.add("visible");
                     if ((scrollHeight - scrollTop - clientHeight) < 250) {
                         scrollActionBtn.textContent = "↑";
-                        scrollActionBtn.title = "Наверх";
                     } else {
                         scrollActionBtn.textContent = "↓";
-                        scrollActionBtn.title = "К подарочным упаковкам внизу";
                     }
                 } else {
                     scrollActionBtn.classList.remove("visible");
@@ -1173,6 +1557,7 @@
             } else {
                 scrollActionBtn.classList.remove("visible");
                 categoriesSection.classList.remove("scrolled");
+                headerBanner.classList.remove("collapsed");
             }
         });
 
@@ -1203,7 +1588,8 @@
         }
 
         function openZoom(imgUrl) {
-            modalContainer.innerHTML = `<img src="${imgUrl}" alt="Товар вблизи">`;
+            if (!imgUrl) return;
+            modalContainer.innerHTML = `<img src="${imgUrl}" alt="Детали">`;
             imageModal.classList.add("open");
         }
 
@@ -1221,14 +1607,6 @@
             welcomeScreen.style.display = "none";
             catalogScreen.style.display = "block";
             window.scrollTo(0, 0);
-        });
-
-        goBackHomeBtn.addEventListener("click", () => {
-            catalogScreen.style.display = "none";
-            welcomeScreen.style.display = "flex";
-            window.scrollTo(0, 0);
-            scrollActionBtn.classList.remove("visible");
-            categoriesSection.classList.remove("scrolled");
         });
 
         function changeItemQty(key, delta) {
@@ -1263,7 +1641,6 @@
             }
             if (totalCount > 0) {
                 bottomCartBar.style.display = "flex";
-                cartCountBadge.textContent = totalCount + " шт.";
                 bottomCartTotal.textContent = totalSum.toLocaleString() + " тг";
             } else {
                 bottomCartBar.style.display = "none";
@@ -1295,8 +1672,8 @@
                         ${giftBadgeHtml}
                         ${imgHtml}
                         <div class="cart-item-info">
-                            <div class="cart-item-title">${item.name}</div>
-                            <div class="cart-item-price">${item.price === 0 ? 'Бесплатно (в комплекте)' : item.priceText}</div>
+                            <div class="cart-item-title">${highlightAllDiscounts(item.name, false)}</div>
+                            <div class="cart-item-price">${item.price === 0 ? 'Тегін / Бесплатно' : item.priceText}</div>
                             <div class="cart-item-controls">
                                 <button class="qty-btn" onclick="changeItemQty('${key}', -1)">-</button>
                                 <span class="cart-qty-num">${item.quantity}</span>
@@ -1317,7 +1694,10 @@
             if (activeBtn) switchCategory(activeBtn.dataset.cat, false);
         };
 
-        openCartModalBtn.addEventListener("click", () => cartModal.classList.add("open"));
+        openCartModalBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            cartModal.classList.add("open");
+        });
         closeCartBtn.addEventListener("click", () => cartModal.classList.remove("open"));
         cartModal.addEventListener("click", (e) => {
             if (e.target === cartModal) cartModal.classList.remove("open");
@@ -1338,16 +1718,15 @@
             window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(text)}`, "_blank");
         });
 
-        function buildCardHtml(item) {
+        function buildCardHtml(item, isSaleCard = false) {
             parsedItemsRegistry[item.key] = item;
             const cartItem = cart[item.key];
             const qty = cartItem ? cartItem.quantity : 0;
 
             const imageHtml = item.img ? `
                 <div class="product-image-wrap" onclick="openZoom('${item.img}')">
-                    ${!item.inStock ? '<span class="sold-out-badge">Сатылымда жоқ<br>Нет в наличии</span>' : ''}
+                    ${!item.inStock ? '<div class="sold-out-badge"><span>Сатылымда жоқ</span><span style="font-size:13px;font-weight:600;">Нет в наличии</span></div>' : ''}
                     <img src="${item.img}" alt="${item.name}" loading="lazy">
-                    <span class="zoom-hint">Үлкейту / Лупа</span>
                 </div>
             ` : '';
 
@@ -1362,34 +1741,48 @@
             } else if (item.isIncluded) {
                 actionBlock = `
                     <div class="add-to-cart-simple included-badge">
-                        <span class="btn-main">Входит в стоимость</span>
-                        <span class="btn-sub">Фирменный комплимент</span>
+                        <span class="btn-main">Бағасына кіреді</span>
+                        <span class="btn-sub">Входит в стоимость</span>
                     </div>
                 `;
             } else if (qty > 0) {
                 actionBlock = `
                     <div class="card-cart-controls">
                         <button class="card-qty-btn" onclick="changeItemQty('${item.key}', -1)">-</button>
-                        <span class="card-qty-count">${qty} шт.</span>
+                        <span class="card-qty-count">${qty} дана / шт.</span>
                         <button class="card-qty-btn" onclick="changeItemQty('${item.key}', 1)">+</button>
                     </div>
                 `;
             } else {
                 actionBlock = `
                     <button class="add-to-cart-simple" onclick="changeItemQty('${item.key}', 1)">
-                        <span class="btn-main">Таңдау / Выбрать</span>
-                        <span class="btn-sub">В корзину</span>
+                        <span class="btn-main">Таңдау</span>
+                        <span class="btn-sub">Выбрать в корзину</span>
                     </button>
                 `;
             }
 
+            const nameSplit = splitBilingualText(item.name);
+            const nameHtml = nameSplit.ru ? `
+                <div class="product-name-group">
+                    <h3 class="product-name-kz">${highlightAllDiscounts(nameSplit.kz, false)}</h3>
+                    <div class="product-name-ru">${highlightAllDiscounts(nameSplit.ru, false)}</div>
+                </div>
+            ` : `
+                <div class="product-name-group">
+                    <h3 class="product-name-kz">${highlightAllDiscounts(nameSplit.kz, false)}</h3>
+                </div>
+            `;
+
+            const formattedPrice = highlightAllDiscounts(item.priceText, false);
+
             return `
-                <article class="product-card ${!item.inStock ? 'out-of-stock' : ''}">
+                <article class="product-card ${!item.inStock ? 'out-of-stock' : ''} ${isSaleCard ? 'sale-product-card' : ''}">
                     ${imageHtml}
                     <div class="product-info">
                         <div>
-                            <h3 class="product-name">${item.name}</h3>
-                            <div class="product-price">${item.priceText}</div>
+                            ${nameHtml}
+                            <div class="product-price">${formattedPrice}</div>
                         </div>
                         ${actionBlock}
                     </div>
@@ -1403,11 +1796,12 @@
                 bottomContainer.innerHTML = '';
                 return;
             }
-            const packCards = packList.map(p => buildCardHtml(p)).join("");
+            const packCards = packList.map(p => buildCardHtml(p, false)).join("");
             bottomContainer.innerHTML = `
                 <div class="packaging-divider">
-                    <h3>🎁 Пакет / Коробка • Подарочная упаковка</h3>
-                    <p>Выберите красивое оформление для вашего подарка</p>
+                    <h3>🎁 Сыйлық қорабы / Подарочная упаковка</h3>
+                    <span class="pack-sub-kz">Сыйлыққа әдемі қаптама таңдаңыз</span>
+                    <span class="pack-sub-ru">Выберите красивое оформление для вашего подарка</span>
                 </div>
                 <div class="products-grid">${packCards}</div>
             `;
@@ -1424,25 +1818,19 @@
 
                 if (packPhotoRaw || packPriceRaw || packCode) {
                     const packImg = packPhotoRaw.includes('http') ? extractDriveThumb(packPhotoRaw) : '';
-                    const rawTitle = packCode || (!packPhotoRaw.includes('http') ? packPhotoRaw : 'Упаковка');
+                    const rawTitle = packCode || (!packPhotoRaw.includes('http') ? packPhotoRaw : 'Қаптама / Упаковка');
                     
-                    let packTitle = rawTitle;
-                    const lower = rawTitle.toLowerCase();
-                    if (!lower.includes('пакет') && !lower.includes('коробка')) {
-                        packTitle = `Пакет/Коробка: ${rawTitle}`;
-                    }
-
                     const numPackPrice = Number(packPriceRaw.replace(/[^\d]/g, '')) || 0;
                     const isIncluded = packPriceRaw.toLowerCase().includes('входит');
-                    const uniqueId = `pack_${packTitle}_${packPriceRaw}`;
+                    const uniqueId = `pack_${rawTitle}_${packPriceRaw}`;
 
                     if (!seenKeys.has(uniqueId)) {
                         seenKeys.add(uniqueId);
                         const packObj = {
-                            key: `pack_${scopeName}_${idx}_${packTitle}`,
-                            name: packTitle,
+                            key: `pack_${scopeName}_${idx}_${rawTitle}`,
+                            name: rawTitle,
                             price: isIncluded ? 0 : numPackPrice,
-                            priceText: packPriceRaw || (numPackPrice > 0 ? numPackPrice.toLocaleString() + ' тг' : 'Бесплатно'),
+                            priceText: packPriceRaw || (numPackPrice > 0 ? numPackPrice.toLocaleString() + ' тг' : 'Тегін / Бесплатно'),
                             img: packImg,
                             inStock: true,
                             isIncluded: isIncluded
@@ -1458,48 +1846,84 @@
             return result;
         }
 
+        function getCategoryLanguages(catName) {
+            const split = splitBilingualText(catName);
+            if (split.ru) return split;
+
+            const lower = catName.toLowerCase();
+            if (lower.includes('қысқа')) return { kz: catName, ru: 'Короткие авторские шарфики' };
+            if (lower.includes('ұзын')) return { kz: catName, ru: 'Длинные авторские шарфы' };
+            if (lower.includes('жеңілдік') || lower.includes('распродаж')) return { kz: 'Жеңілдіктер', ru: 'Распродажа' };
+            if (lower.includes('мойын') || lower.includes('орамал')) return { kz: catName, ru: 'Авторские платки и шарфы' };
+            return { kz: catName, ru: 'Коллекция Imdiva' };
+        }
+
         function switchCategory(catKey, scrollToSection = true) {
             const headingEl = document.getElementById("sectionHeading");
             const contentEl = document.getElementById("catalogContent");
 
             if (catKey === "general") {
+                headingEl.classList.remove("sale-heading-festive");
                 headingEl.innerHTML = `
-                    <h2>Жалпы ақпарат / Общая информация</h2>
-                    <p>Imdiva — сшито с любовью • Алматы</p>
+                    <div class="heading-lang-block">
+                        <span class="heading-kz">Жалпы ақпарат</span>
+                        <span class="heading-sep"></span>
+                        <span class="heading-ru">Общая информация</span>
+                    </div>
                 `;
+                
+                const photoA1Html = globalGeneralPhotoA1 ? `
+                    <div class="general-photo-card" onclick="openZoom('${globalGeneralPhotoA1}')">
+                        <img src="${globalGeneralPhotoA1}" alt="Общая информация">
+                    </div>
+                ` : `
+                    <div class="general-photo-card">
+                        🖼️ Фото (A1)
+                    </div>
+                `;
+
                 contentEl.innerHTML = `
                     <div class="brand-story-card">
-                        <h3>Imdiva — сшито с любовью</h3>
-                        <p>Авторские аксессуары и платки в современном национальном стиле. Изысканная ручная работа и премиальное качество для ценителей элегантности.</p>
-                        <div class="info-highlights">
-                            <div class="highlight-item">
-                                <strong>Алматы • Доставка</strong>
-                                <span>Оперативная доставка по всему Казахстану</span>
+                        <h3>Imdiva • Алматы</h3>
+                        <div class="brand-lang-box">
+                            <div>
+                                <p class="desc-text-body">Махаббатпен тігілген авторлық бұйымдар. Бренд туралы жалпы ақпарат.</p>
                             </div>
-                            <div class="highlight-item">
-                                <strong>100% Ручная работа</strong>
-                                <span>Эксклюзивные детали и благородные ткани</span>
+                            <div style="border-top: 1px dashed #cbd5e1; padding-top: 10px;">
+                                <p class="desc-text-body">Авторские изделия, сшитые с любовью. Общая информация о бренде.</p>
                             </div>
                         </div>
-                        <div class="quick-actions">
-                            <a href="https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent('Здравствуйте! Хочу проконсультироваться по ассортименту.')}" target="_blank" class="white-action-btn">
-                                💬 Написать консультанту в WhatsApp
-                            </a>
-                            <a href="https://www.instagram.com/d_iva_brand" target="_blank" class="white-action-btn">
-                                ✨ Посмотреть новинки в Instagram
-                            </a>
-                        </div>
+                        ${photoA1Html}
                     </div>
                 `;
                 renderBottomPackaging([]);
             } else {
-                headingEl.innerHTML = `
-                    <h2>${catKey}</h2>
-                    <p>Imdiva — Алматы</p>
-                `;
-                const rawItems = catalogData[catKey] || [];
-                const items = [];
+                const isSale = isSaleCategory(catKey);
+                const catLangs = getCategoryLanguages(catKey);
 
+                if (isSale) {
+                    headingEl.classList.add("sale-heading-festive");
+                } else {
+                    headingEl.classList.remove("sale-heading-festive");
+                }
+
+                const salePrefix = isSale ? '🎉 ' : '';
+                headingEl.innerHTML = `
+                    <div class="heading-lang-block">
+                        <span class="heading-kz">${salePrefix}${catLangs.kz}</span>
+                        <span class="heading-sep"></span>
+                        <span class="heading-ru">${catLangs.ru}</span>
+                    </div>
+                `;
+                
+                const rawItems = catalogData[catKey] || [];
+                
+                let k1Description = '';
+                if (rawItems.length > 0) {
+                    k1Description = String(rawItems[0]['K'] ?? rawItems[0]['k'] ?? rawItems[0]['description'] ?? rawItems[0]['описание'] ?? '').trim();
+                }
+
+                const items = [];
                 rawItems.forEach((row, idx) => {
                     const photoRaw = String(row['A'] ?? row['фото'] ?? row['Фото'] ?? '').trim();
                     if (!photoRaw) return;
@@ -1524,16 +1948,40 @@
                     });
                 });
 
+                let k1Html = '';
+                if (k1Description) {
+                    const splitDesc = splitBilingualText(k1Description);
+                    const kzHighlighted = highlightAllDiscounts(splitDesc.kz, true);
+                    const ruHighlighted = highlightAllDiscounts(splitDesc.ru, true);
+
+                    k1Html = `
+                        <div class="category-k1-description">
+                            <div class="${ruHighlighted ? 'lang-card-kz' : ''}">
+                                <span class="desc-text-body">${kzHighlighted}</span>
+                            </div>
+                            ${ruHighlighted ? `
+                                <div>
+                                    <span class="desc-text-body">${ruHighlighted}</span>
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                }
+
                 if (items.length === 0) {
                     contentEl.innerHTML = `
+                        ${k1Html}
                         <div class="empty-category">
-                            <h3>Топтама дайындалуда / Раздел наполняется</h3>
-                            <p style="margin-top:8px;">Скоро здесь появятся новинки. Для заказа вы можете написать нам в WhatsApp.</p>
+                            <p style="font-weight:800;color:var(--brand-primary);">Топтама дайындалуда</p>
+                            <p style="margin-top:4px;">Раздел скоро наполнится новинками</p>
                         </div>
                     `;
                 } else {
-                    const cardsHtml = items.map(item => buildCardHtml(item)).join("");
-                    contentEl.innerHTML = `<section class="products-grid">${cardsHtml}</section>`;
+                    const cardsHtml = items.map(item => buildCardHtml(item, isSale)).join("");
+                    contentEl.innerHTML = `
+                        ${k1Html}
+                        <section class="products-grid">${cardsHtml}</section>
+                    `;
                 }
 
                 const categoryPacks = parsePackagingFromRows(rawItems, catKey);
@@ -1545,52 +1993,145 @@
             }
         }
 
+        function updatePaymentHeaderUI() {
+            const card1 = document.getElementById("paymentCard1");
+            const card2 = document.getElementById("paymentCard2");
+
+            if (paymentImagesList.length > 0 && paymentImagesList[0]) {
+                const img1Url = extractDriveThumb(paymentImagesList[0]);
+                card1.innerHTML = `<img src="${img1Url}" alt="Оплата часть 1">`;
+                card1.setAttribute("onclick", `openZoom('${img1Url}')`);
+            } else {
+                card1.innerHTML = `
+                    <div class="payment-placeholder-text">
+                        💳 Оплата (Часть 1)
+                        <span>Скоро здесь будет картинка</span>
+                    </div>
+                `;
+                card1.removeAttribute("onclick");
+            }
+
+            if (paymentImagesList.length > 1 && paymentImagesList[1]) {
+                const img2Url = extractDriveThumb(paymentImagesList[1]);
+                card2.innerHTML = `<img src="${img2Url}" alt="Оплата часть 2">`;
+                card2.setAttribute("onclick", `openZoom('${img2Url}')`);
+            } else {
+                card2.innerHTML = `
+                    <div class="payment-placeholder-text">
+                        💳 Оплата (Часть 2)
+                        <span>Скоро здесь будет картинка</span>
+                    </div>
+                `;
+                card2.removeAttribute("onclick");
+            }
+        }
+
         async function loadCatalog() {
             try {
                 const response = await fetch(API_URL);
-                const rawArray = await response.json();
+                const rawData = await response.json();
                 
-                if (Array.isArray(rawArray)) {
-                    catalogData = {};
-                    
-                    rawArray.forEach(item => {
-                        const cat = String(item['category'] ?? item['категория'] ?? item['Категория'] ?? 'Другое').trim();
-                        if (!catalogData[cat]) {
-                            catalogData[cat] = [];
+                let rawArray = [];
+                if (Array.isArray(rawData)) {
+                    rawArray = rawData;
+                } else if (typeof rawData === 'object' && rawData !== null) {
+                    for (let sheetName in rawData) {
+                        const lowerName = sheetName.toLowerCase();
+                        const sheetRows = rawData[sheetName];
+                        if (Array.isArray(sheetRows)) {
+                            if (lowerName.includes('12') || lowerName.includes('оплат') || lowerName.includes('payment')) {
+                                sheetRows.forEach(r => {
+                                    const pImg = String(r['A'] ?? r['фото'] ?? r['Фото'] ?? r['G'] ?? '').trim();
+                                    if (pImg && pImg.includes('http')) {
+                                        paymentImagesList.push(pImg);
+                                    }
+                                });
+                            } else if (lowerName.includes('общ') || lowerName.includes('general') || lowerName.includes('ақпарат')) {
+                                if (sheetRows.length > 0) {
+                                    const a1Val = String(sheetRows[0]['A'] ?? sheetRows[0]['фото'] ?? '').trim();
+                                    if (a1Val && a1Val.includes('http')) {
+                                        globalGeneralPhotoA1 = a1Val;
+                                    }
+                                }
+                            }
                         }
-                        catalogData[cat].push(item);
-                    });
-
-                    allPackagingItems = parsePackagingFromRows(rawArray, 'global');
-
-                    const tabsContainer = document.getElementById("categoryTabs");
-                    
-                    tabsContainer.innerHTML = `
-                        <button class="cat-btn active" data-cat="general">
-                            <span class="cat-main">Жалпы ақпарат</span>
-                            <span class="cat-sub">Общая информация</span>
-                        </button>
-                    `;
-
-                    for (let catKey in catalogData) {
-                        const btn = document.createElement("button");
-                        btn.className = "cat-btn";
-                        btn.dataset.cat = catKey;
-                        btn.innerHTML = `
-                            <span class="cat-main">${catKey}</span>
-                            <span class="cat-sub">Коллекция</span>
-                        `;
-                        tabsContainer.appendChild(btn);
                     }
 
-                    document.querySelectorAll(".cat-btn").forEach(btn => {
-                        btn.addEventListener("click", () => {
-                            document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
-                            btn.classList.add("active");
-                            switchCategory(btn.dataset.cat, true);
+                    const possibleCatKeys = Object.keys(rawData).filter(k => !k.toLowerCase().includes('12') && !k.toLowerCase().includes('оплат') && !k.toLowerCase().includes('payment'));
+                    if (possibleCatKeys.length === 1 && Array.isArray(rawData[possibleCatKeys[0]])) {
+                        rawArray = rawData[possibleCatKeys[0]];
+                    } else {
+                        possibleCatKeys.forEach(k => {
+                            if (Array.isArray(rawData[k])) {
+                                rawData[k].forEach(row => {
+                                    row['category'] = row['category'] || k;
+                                    rawArray.push(row);
+                                });
+                            }
                         });
-                    });
+                    }
                 }
+
+                rawArray.forEach(item => {
+                    const catName = String(item['category'] ?? item['категория'] ?? item['Категория'] ?? '').trim();
+                    const lowerCat = catName.toLowerCase();
+                    
+                    if (lowerCat.includes('12') || lowerCat.includes('оплат') || lowerCat.includes('payment')) {
+                        const payPhoto = String(item['A'] ?? item['фото'] ?? item['Фото'] ?? '').trim();
+                        if (payPhoto && payPhoto.includes('http')) {
+                            paymentImagesList.push(payPhoto);
+                        }
+                        return;
+                    }
+
+                    const potentialA1 = String(item['A'] ?? item['фото'] ?? '').trim();
+                    if ((lowerCat.includes('общ') || lowerCat.includes('general')) && potentialA1.includes('http') && !globalGeneralPhotoA1) {
+                        globalGeneralPhotoA1 = potentialA1;
+                    }
+
+                    if (!catalogData[catName]) {
+                        catalogData[catName] = [];
+                    }
+                    catalogData[catName].push(item);
+                });
+
+                updatePaymentHeaderUI();
+                allPackagingItems = parsePackagingFromRows(rawArray, 'global');
+
+                const tabsContainer = document.getElementById("categoryTabs");
+                
+                tabsContainer.innerHTML = `
+                    <button class="cat-btn active" data-cat="general">
+                        <span class="cat-kz">Жалпы ақпарат</span>
+                        <span class="cat-divider"></span>
+                        <span class="cat-ru">Общая информация</span>
+                    </button>
+                `;
+
+                for (let catKey in catalogData) {
+                    const btn = document.createElement("button");
+                    const isSale = isSaleCategory(catKey);
+                    btn.className = `cat-btn ${isSale ? 'sale-festive' : ''}`;
+                    btn.dataset.cat = catKey;
+                    
+                    const langs = getCategoryLanguages(catKey);
+                    const icon = isSale ? '🎁 ' : '';
+                    
+                    btn.innerHTML = `
+                        <span class="cat-kz">${icon}${langs.kz}</span>
+                        <span class="cat-divider"></span>
+                        <span class="cat-ru">${langs.ru}</span>
+                    `;
+                    tabsContainer.appendChild(btn);
+                }
+
+                document.querySelectorAll(".cat-btn").forEach(btn => {
+                    btn.addEventListener("click", () => {
+                        document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+                        btn.classList.add("active");
+                        switchCategory(btn.dataset.cat, true);
+                    });
+                });
             } catch (error) {
                 console.error("Ошибка загрузки каталога:", error);
                 document.getElementById("catalogContent").innerHTML = `

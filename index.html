@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -178,7 +178,7 @@
             padding: 16px;
         }
 
-        /* ШАПКА С ДВУМЯ БОЛЬШИМИ ФОТО ОПЛАТЫ БЕЗ РАМОК */
+        /* ШАПКА С ФОТО ОПЛАТЫ */
         .header-banner {
             background: var(--bg-card);
             border-radius: var(--radius-soft);
@@ -353,7 +353,7 @@
             flex-direction: column;
             justify-content: center;
             min-width: 170px;
-            max-width: 240px;
+            max-width: 245px;
             transition: all 0.2s ease;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
@@ -372,9 +372,9 @@
         }
 
         .cat-btn .cat-divider {
-            height: 1px;
-            background: #e2e8f0;
-            margin: 5px 0;
+            height: 1.5px;
+            background: #cbd5e1;
+            margin: 6px 0;
             width: 100%;
         }
 
@@ -396,23 +396,6 @@
             background: linear-gradient(135deg, #fffbeb 0%, #fef2f2 100%);
             border: 3px solid #f59e0b;
             box-shadow: 0 0 18px rgba(245, 158, 11, 0.55);
-            position: relative;
-            overflow: visible;
-        }
-
-        .cat-btn.sale-festive::before {
-            content: "✨ АКЦИЯ";
-            position: absolute;
-            top: -11px;
-            right: 12px;
-            background: linear-gradient(90deg, #dc2626, #d97706);
-            color: #ffffff;
-            font-size: 11px;
-            font-weight: 800;
-            padding: 2px 10px;
-            border-radius: 20px;
-            letter-spacing: 0.5px;
-            box-shadow: 0 3px 8px rgba(220, 38, 38, 0.35);
         }
 
         .cat-btn.sale-festive .cat-kz {
@@ -475,7 +458,7 @@
         }
 
         .heading-sep {
-            width: 60px;
+            width: 70px;
             height: 2px;
             background: #cbd5e1;
             border-radius: 2px;
@@ -657,7 +640,8 @@
         .product-name-group {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            align-items: center;
+            gap: 5px;
         }
 
         .product-name-kz {
@@ -665,6 +649,13 @@
             font-weight: 800;
             color: var(--brand-primary);
             line-height: 1.35;
+        }
+
+        .product-name-sep {
+            width: 48px;
+            height: 1.5px;
+            background-color: #cbd5e1;
+            border-radius: 2px;
         }
 
         .product-name-ru {
@@ -678,7 +669,7 @@
             font-size: 21px;
             font-weight: 800;
             color: var(--accent-color);
-            margin-top: 6px;
+            margin-top: 8px;
         }
 
         /* БЛОК УПАКОВКИ В САМОМ НИЗУ */
@@ -1206,7 +1197,7 @@
     <div id="catalogScreen">
         <div class="container">
             
-            <!-- ШАПКА С ДВУМЯ ФОТО ОПЛАТЫ БЕЗ РАМОК -->
+            <!-- ШАПКА С ФОТО ОПЛАТЫ -->
             <header class="header-banner">
                 <div class="header-banner-inner">
                     <div class="catalog-top-row">
@@ -1360,18 +1351,20 @@
             }
             if (str.includes('/')) {
                 const parts = str.split('/');
-                if (parts.length === 2 && parts[0].trim().length > 2 && parts[1].trim().length > 2) {
+                if (parts.length === 2 && parts[0].trim().length > 0 && parts[1].trim().length > 0) {
                     return { kz: parts[0].trim(), ru: parts[1].trim() };
                 }
             }
 
-            const ruStartRegex = /(Короткие|Длинные|Авторские|Искусственный|Натуральный|Шелковый|Шелк|Платок|Шарф|Распродажа|Скидк|Подароч|Входит|Комплект)/i;
-            const matchIdx = str.search(ruStartRegex);
-            if (matchIdx > 2) {
-                return {
-                    kz: str.substring(0, matchIdx).trim(),
-                    ru: str.substring(matchIdx).trim()
-                };
+            const ruPhraseRegex = /(?:^|\s)(Короткие|Длинные|Французские|Абайки|Воротнички|Шоперы|Пляжные|Искусственный|Натуральный|Шелковый|Сшиты|Атлас,|Распродажа|Скидки|Входит|Подарочная|Шарфики)(?=\s|$|,|\.)/i;
+            const match = str.match(ruPhraseRegex);
+            if (match && match.index > 2) {
+                const splitPos = match.index + (match[0].startsWith(' ') ? 1 : 0);
+                const kzPart = str.substring(0, splitPos).trim();
+                const ruPart = str.substring(splitPos).trim();
+                if (kzPart.length > 0 && ruPart.length > 0) {
+                    return { kz: kzPart, ru: ruPart };
+                }
             }
 
             return { kz: str, ru: '' };
@@ -1430,7 +1423,6 @@
             }
         });
 
-        /* АВТОМАТИЧЕСКОЕ ПРЕОБРАЗОВАНИЕ ЛЮБЫХ ССЫЛОК GOOGLE DRIVE В СПЕЦИАЛЬНЫЕ */
         function extractDriveThumb(url) {
             if (!url) return '';
             const str = String(url).trim();
@@ -1622,6 +1614,7 @@
             const nameHtml = nameSplit.ru ? `
                 <div class="product-name-group">
                     <h3 class="product-name-kz">${highlightAllDiscounts(nameSplit.kz)}</h3>
+                    <span class="product-name-sep"></span>
                     <div class="product-name-ru">${highlightAllDiscounts(nameSplit.ru)}</div>
                 </div>
             ` : `
@@ -1702,18 +1695,6 @@
             return result;
         }
 
-        function getCategoryLanguages(catName) {
-            const split = splitBilingualText(catName);
-            if (split.ru) return split;
-
-            const lower = catName.toLowerCase();
-            if (lower.includes('қысқа')) return { kz: catName, ru: 'Короткие авторские шарфики' };
-            if (lower.includes('ұзын')) return { kz: catName, ru: 'Длинные авторские шарфы' };
-            if (lower.includes('жеңілдік') || lower.includes('распродаж')) return { kz: 'Жеңілдіктер', ru: 'Распродажа' };
-            if (lower.includes('мойын') || lower.includes('орамал')) return { kz: catName, ru: 'Авторские платки и шарфы' };
-            return { kz: catName, ru: 'Коллекция Imdiva' };
-        }
-
         function switchCategory(catKey, scrollToSection = true) {
             const headingEl = document.getElementById("sectionHeading");
             const contentEl = document.getElementById("catalogContent");
@@ -1755,7 +1736,7 @@
                 renderBottomPackaging([], catKey);
             } else {
                 const isSale = isSaleCategory(catKey);
-                const catLangs = getCategoryLanguages(catKey);
+                const catSplit = splitBilingualText(catKey);
 
                 if (isSale) {
                     headingEl.classList.add("sale-heading-festive");
@@ -1763,12 +1744,10 @@
                     headingEl.classList.remove("sale-heading-festive");
                 }
 
-                const salePrefix = isSale ? '🎉 ' : '';
                 headingEl.innerHTML = `
                     <div class="heading-lang-block">
-                        <span class="heading-kz">${salePrefix}${catLangs.kz}</span>
-                        <span class="heading-sep"></span>
-                        <span class="heading-ru">${catLangs.ru}</span>
+                        <span class="heading-kz">${catSplit.kz}</span>
+                        ${catSplit.ru ? '<span class="heading-sep"></span><span class="heading-ru">' + catSplit.ru + '</span>' : ''}
                     </div>
                 `;
                 
@@ -1888,6 +1867,10 @@
                 const rawData = await response.json();
                 
                 let rawArray = [];
+                paymentImagesList = [];
+                globalGeneralPhotoA1 = "";
+                catalogData = {};
+
                 if (Array.isArray(rawData)) {
                     rawArray = rawData;
                 } else if (typeof rawData === 'object' && rawData !== null) {
@@ -1935,7 +1918,6 @@
                     if (lowerCat.includes('12') || lowerCat.includes('оплат') || lowerCat.includes('payment')) {
                         const payPhoto = String(item['A'] ?? item['фото'] ?? item['Фото'] ?? '').trim();
                         if (payPhoto && payPhoto.includes('http')) {
-                            paymentImagesList.path = payPhoto;
                             paymentImagesList.push(payPhoto);
                         }
                         return;
@@ -1974,13 +1956,11 @@
                     btn.className = `cat-btn ${isSale ? 'sale-festive' : ''}`;
                     btn.dataset.cat = catKey;
                     
-                    const langs = getCategoryLanguages(catKey);
-                    const icon = isSale ? '🎁 ' : '';
+                    const catSplit = splitBilingualText(catKey);
                     
                     btn.innerHTML = `
-                        <span class="cat-kz">${icon}${langs.kz}</span>
-                        <span class="cat-divider"></span>
-                        <span class="cat-ru">${langs.ru}</span>
+                        <span class="cat-kz">${catSplit.kz}</span>
+                        ${catSplit.ru ? '<span class="cat-divider"></span><span class="cat-ru">' + catSplit.ru + '</span>' : ''}
                     `;
                     tabsContainer.appendChild(btn);
                 }
@@ -2007,4 +1987,3 @@
     </script>
 </body>
 </html>
-              

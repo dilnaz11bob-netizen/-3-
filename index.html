@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imdiva — Эксклюзивные шарфы и платки | Алматы</title>
+    <title>Imdiva — Авторские этно-шарфы. Алматы</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -84,11 +84,11 @@
         }
 
         .shop-title {
-            font-size: 30px;
+            font-size: 26px;
             font-weight: 800;
             color: var(--brand-primary);
             margin-bottom: 14px;
-            line-height: 1.2;
+            line-height: 1.25;
         }
 
         .phone-text {
@@ -218,13 +218,14 @@
 
         .payment-images-container {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
             width: 100%;
         }
 
         .payment-img-card {
             width: 100%;
+            aspect-ratio: 3 / 4;
             background: #ffffff;
             border-radius: 14px;
             overflow: hidden;
@@ -233,26 +234,18 @@
             justify-content: center;
             text-align: center;
             cursor: pointer;
-            border: 1px solid var(--border-color);
             box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .payment-img-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
         }
 
         .payment-img-card img {
             width: 100%;
-            height: auto;
-            max-height: 460px;
-            object-fit: contain;
+            height: 100%;
+            object-fit: cover;
             display: block;
         }
 
         .payment-placeholder-text {
-            padding: 36px 16px;
+            padding: 16px;
             font-size: 15px;
             font-weight: 700;
             color: var(--text-main);
@@ -478,39 +471,6 @@
             line-height: 1.25;
         }
 
-        /* ГАЛЕРЕЯ ДЛЯ БЛОКА "ЖАЛПЫ АҚПАРАТ" */
-        .general-info-gallery {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            align-items: center;
-            padding: 6px 0;
-        }
-
-        .general-info-card {
-            width: 100%;
-            max-width: 560px;
-            background: #ffffff;
-            border-radius: var(--radius-soft);
-            overflow: hidden;
-            box-shadow: var(--shadow-subtle);
-            border: 1px solid var(--border-color);
-            cursor: pointer;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-
-        .general-info-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .general-info-card img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: contain;
-        }
-
         /* ОПИСАНИЕ КАТЕГОРИИ */
         .category-k1-description {
             background: #ffffff;
@@ -553,9 +513,6 @@
                 grid-template-columns: 1fr;
                 gap: 18px;
             }
-            .payment-images-container {
-                gap: 10px;
-            }
         }
 
         .product-card {
@@ -589,7 +546,6 @@
             background-color: #f3f4f6;
             position: relative;
             overflow: hidden;
-            cursor: pointer;
         }
 
         .product-image-wrap img {
@@ -909,21 +865,17 @@
         .image-modal-content {
             position: relative;
             width: 100%;
-            max-width: 440px;
-            max-height: 78vh;
+            max-width: 380px;
+            aspect-ratio: 4 / 5;
             background: #000;
             border-radius: var(--radius-soft);
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .image-modal-content img {
             width: 100%;
-            height: auto;
-            max-height: 78vh;
-            object-fit: contain;
+            height: 100%;
+            object-fit: cover;
             display: block;
         }
 
@@ -1170,7 +1122,7 @@
             </div>
             
             <span class="welcome-city">Алматы</span>
-            <h1 class="shop-title">Онлайн магазин</h1>
+            <h1 class="shop-title">Imdiva — Авторские этно-шарфы. Алматы</h1>
             
             <div class="phone-text">8 707 778 76 61</div>
             
@@ -1193,7 +1145,7 @@
     <div id="catalogScreen">
         <div class="container">
             
-            <!-- ШАПКА С ФОТО ОПЛАТЫ (ИЗ ЛИСТ12) -->
+            <!-- ШАПКА С ФОТО ОПЛАТЫ -->
             <header class="header-banner">
                 <div class="header-banner-inner">
                     <div class="catalog-top-row">
@@ -1206,13 +1158,13 @@
                         <div class="payment-img-card" id="paymentCard1">
                             <div class="payment-placeholder-text">
                                 💳 Оплата (Часть 1)
-                                <span>Жүктелуде / Загрузка...</span>
+                                <span>Скоро здесь будет картинка</span>
                             </div>
                         </div>
                         <div class="payment-img-card" id="paymentCard2">
                             <div class="payment-placeholder-text">
                                 💳 Оплата (Часть 2)
-                                <span>Жүктелуде / Загрузка...</span>
+                                <span>Скоро здесь будет картинка</span>
                             </div>
                         </div>
                     </div>
@@ -1309,6 +1261,7 @@
 
     <script>
         const WHATSAPP_PHONE = "77077787661";
+        // Вставьте сюда вашу ссылку веб-приложения Apps Script, заканчивающуюся на /exec
         const API_URL = "https://script.google.com/macros/s/AKfycbx6tBF8jO6c6hAP329WSqOXvKZ4tyCVwuPeBNN7t4CWcUZlwBxpJ8rA-KdbXRaH0X8o/exec";
         
         let cart = {};
@@ -1432,7 +1385,6 @@
         function extractDriveThumb(url) {
             if (!url) return '';
             const str = String(url).trim();
-            if (!str) return '';
             let id = '';
             if (str.includes('id=')) {
                 id = str.split('id=')[1].split('&')[0];
@@ -1440,28 +1392,6 @@
                 id = str.split('/d/')[1].split('/')[0];
             }
             return id ? `https://lh3.googleusercontent.com/d/${id}` : str;
-        }
-
-        function extractPhotoUrlFromRow(row) {
-            if (!row || typeof row !== 'object') return '';
-            const candidates = [
-                row['A'],
-                row['a'],
-                row['фото'],
-                row['Фото'],
-                row['ФОТО'],
-                ...Object.values(row)
-            ];
-            for (const val of candidates) {
-                const str = String(val ?? '').trim();
-                if (!str) continue;
-                const lower = str.toLowerCase();
-                if (lower === 'фото' || lower.includes('информация об оплате')) continue;
-                if (str.startsWith('http://') || str.startsWith('https://')) {
-                    return str;
-                }
-            }
-            return '';
         }
 
         function openZoom(imgUrl) {
@@ -1603,7 +1533,7 @@
             const imageHtml = item.img ? `
                 <div class="product-image-wrap" onclick="openZoom('${item.img}')">
                     ${!item.inStock ? '<div class="sold-out-badge"><span>Сатылымда жоқ</span><span style="font-size:13px;font-weight:600;">Нет в наличии</span></div>' : ''}
-                    <img src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
+                    <img src="${item.img}" alt="${item.name}" loading="lazy">
                 </div>
             ` : '';
 
@@ -1738,24 +1668,24 @@
                     </div>
                 `;
                 
-                const validGeneralPhotos = globalGeneralPhotoList
-                    .map(url => extractDriveThumb(url))
-                    .filter(Boolean);
+                if (globalGeneralPhotoList.length > 0) {
+                    const photosHtml = globalGeneralPhotoList.map(url => {
+                        const thumbUrl = extractDriveThumb(url);
+                        return `
+                            <div style="width: 100%; max-width: 500px; margin: 0 auto 20px auto; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+                                <img src="${thumbUrl}" alt="Общая информация" style="width: 100%; height: auto; display: block; cursor: pointer;" onclick="openZoom('${thumbUrl}')">
+                            </div>
+                        `;
+                    }).join("");
 
-                let photosHtml = validGeneralPhotos.map((thumbUrl, index) => `
-                    <div class="general-info-card" onclick="openZoom('${thumbUrl}')">
-                        <img src="${thumbUrl}" alt="Жалпы ақпарат ${index + 1}" loading="lazy" onerror="this.parentElement.style.display='none'">
-                    </div>
-                `).join("");
-
-                // Добавление вашего нового фото со ссылкой на Instagram строго в самый конец
-                photosHtml += `
-                    <a href="https://www.instagram.com/d_iva_brand?utm_source=qr" target="_blank" rel="noopener noreferrer" class="general-info-card" style="display: block; text-decoration: none;">
-                        <img src="IMG-20261125-WA7902.jpg" alt="Instagram Imdiva" loading="lazy" onerror="this.parentElement.style.display='none'">
-                    </a>
-                `;
-
-                contentEl.innerHTML = `<div class="general-info-gallery">${photosHtml}</div>`;
+                    contentEl.innerHTML = `<div style="padding: 10px 0;">${photosHtml}</div>`;
+                } else {
+                    contentEl.innerHTML = `
+                        <div style="text-align: center; padding: 40px; background: #fff; border-radius: 20px; border: 2px dashed #cbd5e1; color: #94a3b8;">
+                            Фото еще не загружены в столбец A
+                        </div>
+                    `;
+                }
                 renderBottomPackaging([], catKey);
             } else {
                 const isSale = isSaleCategory(catKey);
@@ -1783,7 +1713,7 @@
 
                 const items = [];
                 rawItems.forEach((row, idx) => {
-                    const photoRaw = extractPhotoUrlFromRow(row);
+                    const photoRaw = String(row['A'] ?? row['фото'] ?? row['Фото'] ?? '').trim();
                     if (!photoRaw) return;
 
                     const img = extractDriveThumb(photoRaw);
@@ -1852,54 +1782,36 @@
         }
 
         function updatePaymentHeaderUI() {
-            const container = document.getElementById("paymentImagesContainer");
-            const validPaymentPhotos = paymentImagesList
-                .map(url => extractDriveThumb(url))
-                .filter(Boolean);
+            const card1 = document.getElementById("paymentCard1");
+            const card2 = document.getElementById("paymentCard2");
 
-            if (validPaymentPhotos.length === 0) {
-                container.style.display = "none";
-                return;
+            if (paymentImagesList.length > 0 && paymentImagesList[0]) {
+                const img1Url = extractDriveThumb(paymentImagesList[0]);
+                card1.innerHTML = `<img src="${img1Url}" alt="Оплата часть 1">`;
+                card1.setAttribute("onclick", `openZoom('${img1Url}')`);
+            } else {
+                card1.innerHTML = `
+                    <div class="payment-placeholder-text">
+                        💳 Оплата (Часть 1)
+                        <span>Скоро здесь будет картинка</span>
+                    </div>
+                `;
+                card1.removeAttribute("onclick");
             }
 
-            container.style.display = "grid";
-            container.innerHTML = validPaymentPhotos.map((imgUrl, idx) => `
-                <div class="payment-img-card" onclick="openZoom('${imgUrl}')">
-                    <img src="${imgUrl}" alt="Оплата (часть ${idx + 1})" loading="lazy" onerror="this.parentElement.style.display='none'">
-                </div>
-            `).join("");
-        }
-
-        function renderCategoryTabs() {
-            const tabsContainer = document.getElementById("categoryTabs");
-            let tabsHtml = `
-                <button class="cat-btn active" data-cat="general">
-                    <span class="cat-kz">Жалпы ақпарат</span>
-                    <span class="cat-divider"></span>
-                    <span class="cat-ru">Общая информация</span>
-                </button>
-            `;
-
-            Object.keys(catalogData).forEach(catKey => {
-                const split = splitBilingualText(catKey);
-                const saleClass = isSaleCategory(catKey) ? 'sale-festive' : '';
-                tabsHtml += `
-                    <button class="cat-btn ${saleClass}" data-cat="${catKey.replace(/"/g, '&quot;')}">
-                        <span class="cat-kz">${split.kz}</span>
-                        ${split.ru ? `<span class="cat-divider"></span><span class="cat-ru">${split.ru}</span>` : ''}
-                    </button>
+            if (paymentImagesList.length > 1 && paymentImagesList[1]) {
+                const img2Url = extractDriveThumb(paymentImagesList[1]);
+                card2.innerHTML = `<img src="${img2Url}" alt="Оплата часть 2">`;
+                card2.setAttribute("onclick", `openZoom('${img2Url}')`);
+            } else {
+                card2.innerHTML = `
+                    <div class="payment-placeholder-text">
+                        💳 Оплата (Часть 2)
+                        <span>Скоро здесь будет картинка</span>
+                    </div>
                 `;
-            });
-
-            tabsContainer.innerHTML = tabsHtml;
-
-            tabsContainer.querySelectorAll(".cat-btn").forEach(btn => {
-                btn.addEventListener("click", () => {
-                    tabsContainer.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
-                    btn.classList.add("active");
-                    switchCategory(btn.dataset.cat, true);
-                });
-            });
+                card2.removeAttribute("onclick");
+            }
         }
 
         async function loadCatalog() {
@@ -1907,81 +1819,97 @@
                 const response = await fetch(API_URL);
                 const rawData = await response.json();
                 
-                let rawArray = [];
                 paymentImagesList = [];
                 globalGeneralPhotoList = [];
                 catalogData = {};
 
-                const isPaymentSheet = (name) => {
-                    const n = String(name).toLowerCase().replace(/[^а-яa-z0-9]/g, '');
-                    return n.includes('лист12') || n.includes('sheet12') || n.includes('оплат') || n.includes('payment');
-                };
-
-                const isGeneralSheet = (name) => {
-                    const n = String(name).toLowerCase();
-                    return n.includes('жалпы') || n.includes('ақпарат') || n.includes('общ') || n.includes('general');
-                };
-
-                if (Array.isArray(rawData)) {
-                    rawArray = rawData;
-                } else if (typeof rawData === 'object' && rawData !== null) {
+                if (typeof rawData === 'object' && rawData !== null) {
                     for (let sheetName in rawData) {
+                        const lowerName = sheetName.toLowerCase();
                         const sheetRows = rawData[sheetName];
-                        if (!Array.isArray(sheetRows)) continue;
+                        
+                        if (Array.isArray(sheetRows)) {
+                            // 1. Проверяем лист Оплаты (Лист12)
+                            if (lowerName.includes('12') || lowerName.includes('оплат') || lowerName.includes('payment')) {
+                                sheetRows.forEach(r => {
+                                    for (let key in r) {
+                                        const val = String(r[key] || '').trim();
+                                        if (val.includes('http') && !paymentImagesList.includes(val)) {
+                                            paymentImagesList.push(val);
+                                        }
+                                    }
+                                });
+                                continue;
+                            }
 
-                        if (isPaymentSheet(sheetName)) {
-                            sheetRows.forEach(r => {
-                                const url = extractPhotoUrlFromRow(r);
-                                if (url) paymentImagesList.push(url);
-                            });
-                        } else if (isGeneralSheet(sheetName)) {
-                            sheetRows.forEach(r => {
-                                const url = extractPhotoUrlFromRow(r);
-                                if (url) globalGeneralPhotoList.push(url);
-                            });
-                        } else {
-                            sheetRows.forEach(row => {
-                                const rowCopy = { ...row };
-                                rowCopy['category'] = rowCopy['category'] || sheetName;
-                                rawArray.push(rowCopy);
-                            });
+                            // 2. Проверяем лист Общей информации (Жалпы ақпарат)
+                            if (lowerName.includes('жалпы') || lowerName.includes('ақпарат') || lowerName.includes('общ') || lowerName.includes('general')) {
+                                sheetRows.forEach(r => {
+                                    for (let key in r) {
+                                        const val = String(r[key] || '').trim();
+                                        if (val.includes('http') && !val.toLowerCase().includes('фото') && !globalGeneralPhotoList.includes(val)) {
+                                            globalGeneralPhotoList.push(val);
+                                        }
+                                    }
+                                });
+                                continue;
+                            }
+
+                            // 3. Остальные листы — каталог товаров
+                            catalogData[sheetName] = sheetRows;
                         }
                     }
                 }
 
-                rawArray.forEach(item => {
-                    const catName = String(item['category'] ?? item['категория'] ?? item['Категория'] ?? '').trim();
-                    if (!catName) return;
-
-                    if (isPaymentSheet(catName)) {
-                        const url = extractPhotoUrlFromRow(item);
-                        if (url) paymentImagesList.push(url);
-                    } else if (isGeneralSheet(catName)) {
-                        const url = extractPhotoUrlFromRow(item);
-                        if (url) globalGeneralPhotoList.push(url);
-                    } else {
-                        if (!catalogData[catName]) {
-                            catalogData[catName] = [];
-                        }
-                        catalogData[catName].push(item);
-                    }
-                });
-
                 updatePaymentHeaderUI();
-                renderCategoryTabs();
-                switchCategory("general", false);
 
+                for (let catKey in catalogData) {
+                    parsePackagingFromRows(catalogData[catKey], catKey);
+                }
+
+                const tabsContainer = document.getElementById("categoryTabs");
+                tabsContainer.innerHTML = `
+                    <button class="cat-btn active" data-cat="general">
+                        <span class="cat-kz">Жалпы ақпарат</span>
+                        <span class="cat-divider"></span>
+                        <span class="cat-ru">Общая информация</span>
+                    </button>
+                `;
+
+                for (let catKey in catalogData) {
+                    const btn = document.createElement("button");
+                    const isSale = isSaleCategory(catKey);
+                    btn.className = `cat-btn ${isSale ? 'sale-festive' : ''}`;
+                    btn.dataset.cat = catKey;
+                    
+                    const catSplit = splitBilingualText(catKey);
+                    
+                    btn.innerHTML = `
+                        <span class="cat-kz">${catSplit.kz}</span>
+                        ${catSplit.ru ? '<span class="cat-divider"></span><span class="cat-ru">' + catSplit.ru + '</span>' : ''}
+                    `;
+                    tabsContainer.appendChild(btn);
+                }
+
+                document.querySelectorAll(".cat-btn").forEach(btn => {
+                    btn.addEventListener("click", () => {
+                        document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+                        btn.classList.add("active");
+                        switchCategory(btn.dataset.cat, true);
+                    });
+                });
             } catch (error) {
-                console.error("Ошибка загрузки таблицы:", error);
+                console.error("Ошибка загрузки каталога:", error);
                 document.getElementById("catalogContent").innerHTML = `
                     <div class="empty-category">
-                        Деректерді жүктеу мүмкін болмады / Ошибка загрузки данных. Обновите страницу.
+                        <h3>Деректерді жүктеу сәтсіз аяқталды / Ошибка загрузки</h3>
                     </div>
                 `;
             }
         }
 
         loadCatalog();
+        switchCategory("general", false);
     </script>
 </body>
 </html>

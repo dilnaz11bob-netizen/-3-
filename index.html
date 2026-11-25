@@ -218,14 +218,13 @@
 
         .payment-images-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
             width: 100%;
         }
 
         .payment-img-card {
             width: 100%;
-            aspect-ratio: 3 / 4;
             background: #ffffff;
             border-radius: 14px;
             overflow: hidden;
@@ -234,18 +233,26 @@
             justify-content: center;
             text-align: center;
             cursor: pointer;
+            border: 1px solid var(--border-color);
             box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .payment-img-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
         }
 
         .payment-img-card img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            max-height: 460px;
+            object-fit: contain;
             display: block;
         }
 
         .payment-placeholder-text {
-            padding: 16px;
+            padding: 36px 16px;
             font-size: 15px;
             font-weight: 700;
             color: var(--text-main);
@@ -471,6 +478,39 @@
             line-height: 1.25;
         }
 
+        /* ГАЛЕРЕЯ ДЛЯ БЛОКА "ЖАЛПЫ АҚПАРАТ" */
+        .general-info-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            padding: 6px 0;
+        }
+
+        .general-info-card {
+            width: 100%;
+            max-width: 560px;
+            background: #ffffff;
+            border-radius: var(--radius-soft);
+            overflow: hidden;
+            box-shadow: var(--shadow-subtle);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .general-info-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .general-info-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+
         /* ОПИСАНИЕ КАТЕГОРИИ */
         .category-k1-description {
             background: #ffffff;
@@ -501,58 +541,6 @@
             font-weight: 800;
         }
 
-        /* КАРТОЧКА О БРЕНДЕ */
-        .brand-story-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-soft);
-            padding: 28px 22px;
-            text-align: center;
-            box-shadow: var(--shadow-subtle);
-        }
-
-        .brand-story-card h3 {
-            font-size: 24px;
-            font-weight: 800;
-            margin-bottom: 12px;
-            color: var(--brand-primary);
-        }
-
-        .brand-lang-box {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 22px;
-            text-align: left;
-            background: #f8fafc;
-            padding: 16px;
-            border-radius: 14px;
-            border: 1px solid var(--border-color);
-        }
-
-        .general-photo-card {
-            width: 100%;
-            background: #f8fafc;
-            border: 2px dashed var(--border-color);
-            border-radius: 14px;
-            overflow: hidden;
-            aspect-ratio: 4 / 5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-weight: 700;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .general-photo-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
         /* СЕТКА ТОВАРОВ */
         .products-grid {
             display: grid;
@@ -564,6 +552,9 @@
             .products-grid {
                 grid-template-columns: 1fr;
                 gap: 18px;
+            }
+            .payment-images-container {
+                gap: 10px;
             }
         }
 
@@ -598,6 +589,7 @@
             background-color: #f3f4f6;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .product-image-wrap img {
@@ -917,17 +909,21 @@
         .image-modal-content {
             position: relative;
             width: 100%;
-            max-width: 380px;
-            aspect-ratio: 4 / 5;
+            max-width: 440px;
+            max-height: 78vh;
             background: #000;
             border-radius: var(--radius-soft);
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .image-modal-content img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            max-height: 78vh;
+            object-fit: contain;
             display: block;
         }
 
@@ -1197,7 +1193,7 @@
     <div id="catalogScreen">
         <div class="container">
             
-            <!-- ШАПКА С ФОТО ОПЛАТЫ -->
+            <!-- ШАПКА С ФОТО ОПЛАТЫ (ИЗ ЛИСТ12) -->
             <header class="header-banner">
                 <div class="header-banner-inner">
                     <div class="catalog-top-row">
@@ -1210,13 +1206,13 @@
                         <div class="payment-img-card" id="paymentCard1">
                             <div class="payment-placeholder-text">
                                 💳 Оплата (Часть 1)
-                                <span>Скоро здесь будет картинка</span>
+                                <span>Жүктелуде / Загрузка...</span>
                             </div>
                         </div>
                         <div class="payment-img-card" id="paymentCard2">
                             <div class="payment-placeholder-text">
                                 💳 Оплата (Часть 2)
-                                <span>Скоро здесь будет картинка</span>
+                                <span>Жүктелуде / Загрузка...</span>
                             </div>
                         </div>
                     </div>
@@ -1319,7 +1315,7 @@
         let catalogData = {};
         let categoryFreePackaging = {}; 
         let parsedItemsRegistry = {};
-        let globalGeneralPhotoA1 = "";
+        let globalGeneralPhotoList = [];
         let paymentImagesList = [];
 
         const welcomeScreen = document.getElementById("welcomeScreen");
@@ -1356,15 +1352,25 @@
                 }
             }
 
-            const ruPhraseRegex = /(?:^|\s)(Короткие|Длинные|Французские|Абайки|Воротнички|Шоперы|Пляжные|Искусственный|Натуральный|Шелковый|Сшиты|Атлас,|Распродажа|Скидки|Входит|Подарочная|Шарфики)(?=\s|$|,|\.)/i;
+            const ruPhraseRegex = /(?:^|\s)(Доска|Доски|Резинки|Короткие|Длинные|Французские|Абайки|Воротнички|Шоперы|Пляжные|Искусственный|Натуральный|Шелковый|Сшиты|Атлас,|Распродажа|Скидки|Входит|Подарочная|Шарфики|Платки|Полотенца)(?=\s|$|,|\.)/i;
             const match = str.match(ruPhraseRegex);
-            if (match && match.index > 2) {
+            
+            if (match && match.index > 1) {
                 const splitPos = match.index + (match[0].startsWith(' ') ? 1 : 0);
                 const kzPart = str.substring(0, splitPos).trim();
                 const ruPart = str.substring(splitPos).trim();
                 if (kzPart.length > 0 && ruPart.length > 0) {
                     return { kz: kzPart, ru: ruPart };
                 }
+            }
+
+            const words = str.split(' ');
+            if (words.length > 2) {
+                const mid = Math.ceil(words.length / 2);
+                return {
+                    kz: words.slice(0, mid).join(' '),
+                    ru: words.slice(mid).join(' ')
+                };
             }
 
             return { kz: str, ru: '' };
@@ -1426,6 +1432,7 @@
         function extractDriveThumb(url) {
             if (!url) return '';
             const str = String(url).trim();
+            if (!str) return '';
             let id = '';
             if (str.includes('id=')) {
                 id = str.split('id=')[1].split('&')[0];
@@ -1433,6 +1440,28 @@
                 id = str.split('/d/')[1].split('/')[0];
             }
             return id ? `https://lh3.googleusercontent.com/d/${id}` : str;
+        }
+
+        function extractPhotoUrlFromRow(row) {
+            if (!row || typeof row !== 'object') return '';
+            const candidates = [
+                row['A'],
+                row['a'],
+                row['фото'],
+                row['Фото'],
+                row['ФОТО'],
+                ...Object.values(row)
+            ];
+            for (const val of candidates) {
+                const str = String(val ?? '').trim();
+                if (!str) continue;
+                const lower = str.toLowerCase();
+                if (lower === 'фото' || lower.includes('информация об оплате')) continue;
+                if (str.startsWith('http://') || str.startsWith('https://')) {
+                    return str;
+                }
+            }
+            return '';
         }
 
         function openZoom(imgUrl) {
@@ -1574,7 +1603,7 @@
             const imageHtml = item.img ? `
                 <div class="product-image-wrap" onclick="openZoom('${item.img}')">
                     ${!item.inStock ? '<div class="sold-out-badge"><span>Сатылымда жоқ</span><span style="font-size:13px;font-weight:600;">Нет в наличии</span></div>' : ''}
-                    <img src="${item.img}" alt="${item.name}" loading="lazy">
+                    <img src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
                 </div>
             ` : '';
 
@@ -1709,30 +1738,24 @@
                     </div>
                 `;
                 
-                const photoA1Html = globalGeneralPhotoA1 ? `
-                    <div class="general-photo-card" onclick="openZoom('${globalGeneralPhotoA1}')">
-                        <img src="${globalGeneralPhotoA1}" alt="Общая информация">
+                const validGeneralPhotos = globalGeneralPhotoList
+                    .map(url => extractDriveThumb(url))
+                    .filter(Boolean);
+
+                let photosHtml = validGeneralPhotos.map((thumbUrl, index) => `
+                    <div class="general-info-card" onclick="openZoom('${thumbUrl}')">
+                        <img src="${thumbUrl}" alt="Жалпы ақпарат ${index + 1}" loading="lazy" onerror="this.parentElement.style.display='none'">
                     </div>
-                ` : `
-                    <div class="general-photo-card">
-                        🖼️ Фото (A1)
-                    </div>
+                `).join("");
+
+                // Добавление вашего нового фото со ссылкой на Instagram строго в самый конец
+                photosHtml += `
+                    <a href="https://www.instagram.com/d_iva_brand?utm_source=qr" target="_blank" rel="noopener noreferrer" class="general-info-card" style="display: block; text-decoration: none;">
+                        <img src="IMG-20261125-WA7902.jpg" alt="Instagram Imdiva" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    </a>
                 `;
 
-                contentEl.innerHTML = `
-                    <div class="brand-story-card">
-                        <h3>Imdiva • Алматы</h3>
-                        <div class="brand-lang-box">
-                            <div>
-                                <p class="desc-text-body">Махаббатпен тігілген авторлық бұйымдар. Бренд туралы жалпы ақпарат.</p>
-                            </div>
-                            <div style="border-top: 1px dashed #cbd5e1; padding-top: 10px;">
-                                <p class="desc-text-body">Авторские изделия, сшитые с любовью. Общая информация о бренде.</p>
-                            </div>
-                        </div>
-                        ${photoA1Html}
-                    </div>
-                `;
+                contentEl.innerHTML = `<div class="general-info-gallery">${photosHtml}</div>`;
                 renderBottomPackaging([], catKey);
             } else {
                 const isSale = isSaleCategory(catKey);
@@ -1760,7 +1783,7 @@
 
                 const items = [];
                 rawItems.forEach((row, idx) => {
-                    const photoRaw = String(row['A'] ?? row['фото'] ?? row['Фото'] ?? '').trim();
+                    const photoRaw = extractPhotoUrlFromRow(row);
                     if (!photoRaw) return;
 
                     const img = extractDriveThumb(photoRaw);
@@ -1829,36 +1852,54 @@
         }
 
         function updatePaymentHeaderUI() {
-            const card1 = document.getElementById("paymentCard1");
-            const card2 = document.getElementById("paymentCard2");
+            const container = document.getElementById("paymentImagesContainer");
+            const validPaymentPhotos = paymentImagesList
+                .map(url => extractDriveThumb(url))
+                .filter(Boolean);
 
-            if (paymentImagesList.length > 0 && paymentImagesList[0]) {
-                const img1Url = extractDriveThumb(paymentImagesList[0]);
-                card1.innerHTML = `<img src="${img1Url}" alt="Оплата часть 1">`;
-                card1.setAttribute("onclick", `openZoom('${img1Url}')`);
-            } else {
-                card1.innerHTML = `
-                    <div class="payment-placeholder-text">
-                        💳 Оплата (Часть 1)
-                        <span>Скоро здесь будет картинка</span>
-                    </div>
-                `;
-                card1.removeAttribute("onclick");
+            if (validPaymentPhotos.length === 0) {
+                container.style.display = "none";
+                return;
             }
 
-            if (paymentImagesList.length > 1 && paymentImagesList[1]) {
-                const img2Url = extractDriveThumb(paymentImagesList[1]);
-                card2.innerHTML = `<img src="${img2Url}" alt="Оплата часть 2">`;
-                card2.setAttribute("onclick", `openZoom('${img2Url}')`);
-            } else {
-                card2.innerHTML = `
-                    <div class="payment-placeholder-text">
-                        💳 Оплата (Часть 2)
-                        <span>Скоро здесь будет картинка</span>
-                    </div>
+            container.style.display = "grid";
+            container.innerHTML = validPaymentPhotos.map((imgUrl, idx) => `
+                <div class="payment-img-card" onclick="openZoom('${imgUrl}')">
+                    <img src="${imgUrl}" alt="Оплата (часть ${idx + 1})" loading="lazy" onerror="this.parentElement.style.display='none'">
+                </div>
+            `).join("");
+        }
+
+        function renderCategoryTabs() {
+            const tabsContainer = document.getElementById("categoryTabs");
+            let tabsHtml = `
+                <button class="cat-btn active" data-cat="general">
+                    <span class="cat-kz">Жалпы ақпарат</span>
+                    <span class="cat-divider"></span>
+                    <span class="cat-ru">Общая информация</span>
+                </button>
+            `;
+
+            Object.keys(catalogData).forEach(catKey => {
+                const split = splitBilingualText(catKey);
+                const saleClass = isSaleCategory(catKey) ? 'sale-festive' : '';
+                tabsHtml += `
+                    <button class="cat-btn ${saleClass}" data-cat="${catKey.replace(/"/g, '&quot;')}">
+                        <span class="cat-kz">${split.kz}</span>
+                        ${split.ru ? `<span class="cat-divider"></span><span class="cat-ru">${split.ru}</span>` : ''}
+                    </button>
                 `;
-                card2.removeAttribute("onclick");
-            }
+            });
+
+            tabsContainer.innerHTML = tabsHtml;
+
+            tabsContainer.querySelectorAll(".cat-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    tabsContainer.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+                    btn.classList.add("active");
+                    switchCategory(btn.dataset.cat, true);
+                });
+            });
         }
 
         async function loadCatalog() {
@@ -1868,122 +1909,79 @@
                 
                 let rawArray = [];
                 paymentImagesList = [];
-                globalGeneralPhotoA1 = "";
+                globalGeneralPhotoList = [];
                 catalogData = {};
+
+                const isPaymentSheet = (name) => {
+                    const n = String(name).toLowerCase().replace(/[^а-яa-z0-9]/g, '');
+                    return n.includes('лист12') || n.includes('sheet12') || n.includes('оплат') || n.includes('payment');
+                };
+
+                const isGeneralSheet = (name) => {
+                    const n = String(name).toLowerCase();
+                    return n.includes('жалпы') || n.includes('ақпарат') || n.includes('общ') || n.includes('general');
+                };
 
                 if (Array.isArray(rawData)) {
                     rawArray = rawData;
                 } else if (typeof rawData === 'object' && rawData !== null) {
                     for (let sheetName in rawData) {
-                        const lowerName = sheetName.toLowerCase();
                         const sheetRows = rawData[sheetName];
-                        if (Array.isArray(sheetRows)) {
-                            if (lowerName.includes('12') || lowerName.includes('оплат') || lowerName.includes('payment')) {
-                                sheetRows.forEach(r => {
-                                    const pImg = String(r['A'] ?? r['фото'] ?? r['Фото'] ?? r['G'] ?? '').trim();
-                                    if (pImg && pImg.includes('http')) {
-                                        paymentImagesList.push(pImg);
-                                    }
-                                });
-                            } else if (lowerName.includes('общ') || lowerName.includes('general') || lowerName.includes('ақпарат')) {
-                                if (sheetRows.length > 0) {
-                                    const a1Val = String(sheetRows[0]['A'] ?? sheetRows[0]['фото'] ?? '').trim();
-                                    if (a1Val && a1Val.includes('http')) {
-                                        globalGeneralPhotoA1 = a1Val;
-                                    }
-                                }
-                            }
-                        }
-                    }
+                        if (!Array.isArray(sheetRows)) continue;
 
-                    const possibleCatKeys = Object.keys(rawData).filter(k => {
-                        const lk = k.toLowerCase();
-                        return !lk.includes('12') && !lk.includes('оплат') && !lk.includes('payment');
-                    });
-
-                    possibleCatKeys.forEach(k => {
-                        if (Array.isArray(rawData[k])) {
-                            rawData[k].forEach(row => {
-                                row['category'] = row['category'] || k;
-                                rawArray.push(row);
+                        if (isPaymentSheet(sheetName)) {
+                            sheetRows.forEach(r => {
+                                const url = extractPhotoUrlFromRow(r);
+                                if (url) paymentImagesList.push(url);
+                            });
+                        } else if (isGeneralSheet(sheetName)) {
+                            sheetRows.forEach(r => {
+                                const url = extractPhotoUrlFromRow(r);
+                                if (url) globalGeneralPhotoList.push(url);
+                            });
+                        } else {
+                            sheetRows.forEach(row => {
+                                const rowCopy = { ...row };
+                                rowCopy['category'] = rowCopy['category'] || sheetName;
+                                rawArray.push(rowCopy);
                             });
                         }
-                    });
+                    }
                 }
 
                 rawArray.forEach(item => {
                     const catName = String(item['category'] ?? item['категория'] ?? item['Категория'] ?? '').trim();
-                    const lowerCat = catName.toLowerCase();
-                    
-                    if (lowerCat.includes('12') || lowerCat.includes('оплат') || lowerCat.includes('payment')) {
-                        const payPhoto = String(item['A'] ?? item['фото'] ?? item['Фото'] ?? '').trim();
-                        if (payPhoto && payPhoto.includes('http')) {
-                            paymentImagesList.push(payPhoto);
+                    if (!catName) return;
+
+                    if (isPaymentSheet(catName)) {
+                        const url = extractPhotoUrlFromRow(item);
+                        if (url) paymentImagesList.push(url);
+                    } else if (isGeneralSheet(catName)) {
+                        const url = extractPhotoUrlFromRow(item);
+                        if (url) globalGeneralPhotoList.push(url);
+                    } else {
+                        if (!catalogData[catName]) {
+                            catalogData[catName] = [];
                         }
-                        return;
+                        catalogData[catName].push(item);
                     }
-
-                    const potentialA1 = String(item['A'] ?? item['фото'] ?? '').trim();
-                    if ((lowerCat.includes('общ') || lowerCat.includes('general')) && potentialA1.includes('http') && !globalGeneralPhotoA1) {
-                        globalGeneralPhotoA1 = potentialA1;
-                    }
-
-                    if (!catalogData[catName]) {
-                        catalogData[catName] = [];
-                    }
-                    catalogData[catName].push(item);
                 });
 
                 updatePaymentHeaderUI();
+                renderCategoryTabs();
+                switchCategory("general", false);
 
-                for (let catKey in catalogData) {
-                    parsePackagingFromRows(catalogData[catKey], catKey);
-                }
-
-                const tabsContainer = document.getElementById("categoryTabs");
-                
-                tabsContainer.innerHTML = `
-                    <button class="cat-btn active" data-cat="general">
-                        <span class="cat-kz">Жалпы ақпарат</span>
-                        <span class="cat-divider"></span>
-                        <span class="cat-ru">Общая информация</span>
-                    </button>
-                `;
-
-                for (let catKey in catalogData) {
-                    const btn = document.createElement("button");
-                    const isSale = isSaleCategory(catKey);
-                    btn.className = `cat-btn ${isSale ? 'sale-festive' : ''}`;
-                    btn.dataset.cat = catKey;
-                    
-                    const catSplit = splitBilingualText(catKey);
-                    
-                    btn.innerHTML = `
-                        <span class="cat-kz">${catSplit.kz}</span>
-                        ${catSplit.ru ? '<span class="cat-divider"></span><span class="cat-ru">' + catSplit.ru + '</span>' : ''}
-                    `;
-                    tabsContainer.appendChild(btn);
-                }
-
-                document.querySelectorAll(".cat-btn").forEach(btn => {
-                    btn.addEventListener("click", () => {
-                        document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
-                        btn.classList.add("active");
-                        switchCategory(btn.dataset.cat, true);
-                    });
-                });
             } catch (error) {
-                console.error("Ошибка загрузки каталога:", error);
+                console.error("Ошибка загрузки таблицы:", error);
                 document.getElementById("catalogContent").innerHTML = `
                     <div class="empty-category">
-                        <h3>Деректерді жүктеу сәтсіз аяқталды / Ошибка загрузки</h3>
+                        Деректерді жүктеу мүмкін болмады / Ошибка загрузки данных. Обновите страницу.
                     </div>
                 `;
             }
         }
 
         loadCatalog();
-        switchCategory("general", false);
     </script>
 </body>
 </html>
